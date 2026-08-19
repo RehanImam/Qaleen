@@ -1,6 +1,5 @@
 
 
-
 // import React from 'react';
 // import { MAIN_GROUPS, SUB_CATEGORIES, COUNTRIES, COLORS } from '../data/products';
 
@@ -19,25 +18,9 @@
 //   };
 
 //   return (
-//     <aside className="w-full md:w-64 bg-white p-5 border border-stone-200 rounded-lg shadow-sm space-y-6 text-stone-800">
+//     /* h-fit and self-start prevents the sidebar from stretching down with the grid height */
+//     <aside className="w-full md:w-64 h-fit self-start bg-white p-5 border border-stone-200 rounded-lg shadow-sm space-y-6 text-stone-800">
       
-//       {/* Main Collection Filter */}
-//       {/* <div>
-//         <h3 className="font-serif font-semibold text-lg border-b border-stone-200 pb-2 mb-3 text-[#2c221e]">
-//           Main Collection
-//         </h3>
-//         <select
-//           value={filters.mainGroup}
-//           onChange={handleMainGroupChange}
-//           className="w-full p-2 border border-stone-300 rounded focus:ring-[#5c0612] focus:border-[#5c0612] text-xs font-semibold bg-stone-50"
-//         >
-//           <option value="">All Collections</option>
-//           {MAIN_GROUPS.map((grp) => (
-//             <option key={grp} value={grp}>{grp}</option>
-//           ))}
-//         </select>
-//       </div> */}
-
 //       {/* Sub Category Filter */}
 //       <div>
 //         <h3 className="font-serif font-semibold text-lg border-b border-stone-200 pb-2 mb-3 text-[#2c221e]">
@@ -144,7 +127,7 @@
 //       {/* Reset Filter Button */}
 //       <button
 //         onClick={() => setFilters({ mainGroup: '', category: '', maxPrice: 50000, size: '', country: '', color: '' })}
-//         className="w-full py-2 bg-stone-100 text-stone-700 text-xs font-medium rounded hover:bg-stone-200 transition-colors uppercase"
+//         className="w-full py-2 bg-stone-100 text-stone-700 text-xs font-medium rounded hover:bg-stone-200 transition-colors uppercase border border-stone-200"
 //       >
 //         Reset Filters
 //       </button>
@@ -156,21 +139,12 @@
 
 
 import React from 'react';
-import { MAIN_GROUPS, SUB_CATEGORIES, COUNTRIES, COLORS } from '../data/products';
+import { SUB_CATEGORIES, COUNTRIES, COLORS } from '../data/products';
 
 export default function FilterSidebar({ filters, setFilters }) {
   const SIZES = ["2x6", "3x5", "4x5", "4x6", "5x6", "5x7", "5x8", "6x7", "6x8", "6x9", "7x8", "8x10"];
 
   const currentSubCategories = filters.mainGroup ? (SUB_CATEGORIES[filters.mainGroup] || []) : [];
-
-  const handleMainGroupChange = (e) => {
-    const selectedGroup = e.target.value;
-    setFilters({
-      ...filters,
-      mainGroup: selectedGroup,
-      category: ''
-    });
-  };
 
   return (
     /* h-fit and self-start prevents the sidebar from stretching down with the grid height */
