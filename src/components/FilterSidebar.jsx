@@ -1,13 +1,44 @@
+
+
+
 // import React from 'react';
-// import { CATEGORIES, COUNTRIES, COLORS } from '../data/products';
+// import { MAIN_GROUPS, SUB_CATEGORIES, COUNTRIES, COLORS } from '../data/products';
 
 // export default function FilterSidebar({ filters, setFilters }) {
 //   const SIZES = ["2x6", "3x5", "4x5", "4x6", "5x6", "5x7", "5x8", "6x7", "6x8", "6x9", "7x8", "8x10"];
 
+//   const currentSubCategories = filters.mainGroup ? (SUB_CATEGORIES[filters.mainGroup] || []) : [];
+
+//   const handleMainGroupChange = (e) => {
+//     const selectedGroup = e.target.value;
+//     setFilters({
+//       ...filters,
+//       mainGroup: selectedGroup,
+//       category: ''
+//     });
+//   };
+
 //   return (
 //     <aside className="w-full md:w-64 bg-white p-5 border border-stone-200 rounded-lg shadow-sm space-y-6 text-stone-800">
       
-//       {/* Category Filter */}
+//       {/* Main Collection Filter */}
+//       {/* <div>
+//         <h3 className="font-serif font-semibold text-lg border-b border-stone-200 pb-2 mb-3 text-[#2c221e]">
+//           Main Collection
+//         </h3>
+//         <select
+//           value={filters.mainGroup}
+//           onChange={handleMainGroupChange}
+//           className="w-full p-2 border border-stone-300 rounded focus:ring-[#5c0612] focus:border-[#5c0612] text-xs font-semibold bg-stone-50"
+//         >
+//           <option value="">All Collections</option>
+//           {MAIN_GROUPS.map((grp) => (
+//             <option key={grp} value={grp}>{grp}</option>
+//           ))}
+//         </select>
+//       </div> */}
+
+//       {/* Sub Category Filter */}
 //       <div>
 //         <h3 className="font-serif font-semibold text-lg border-b border-stone-200 pb-2 mb-3 text-[#2c221e]">
 //           Category
@@ -15,10 +46,13 @@
 //         <select
 //           value={filters.category}
 //           onChange={(e) => setFilters({ ...filters, category: e.target.value })}
-//           className="w-full p-2 border border-stone-300 rounded focus:ring-[#5c0612] focus:border-[#5c0612] text-xs"
+//           disabled={!filters.mainGroup && currentSubCategories.length === 0}
+//           className="w-full p-2 border border-stone-300 rounded focus:ring-[#5c0612] focus:border-[#5c0612] text-xs disabled:bg-stone-100 disabled:text-stone-400"
 //         >
-//           <option value="">All Categories</option>
-//           {CATEGORIES.map((cat, idx) => (
+//           <option value="">
+//             {filters.mainGroup ? `All ${filters.mainGroup} Categories` : "Select Collection First"}
+//           </option>
+//           {currentSubCategories.map((cat, idx) => (
 //             <option key={idx} value={cat}>{cat}</option>
 //           ))}
 //         </select>
@@ -109,7 +143,7 @@
 
 //       {/* Reset Filter Button */}
 //       <button
-//         onClick={() => setFilters({ category: '', maxPrice: 50000, size: '', country: '', color: '' })}
+//         onClick={() => setFilters({ mainGroup: '', category: '', maxPrice: 50000, size: '', country: '', color: '' })}
 //         className="w-full py-2 bg-stone-100 text-stone-700 text-xs font-medium rounded hover:bg-stone-200 transition-colors uppercase"
 //       >
 //         Reset Filters
@@ -118,7 +152,6 @@
 //     </aside>
 //   );
 // }
-
 
 
 
@@ -140,25 +173,9 @@ export default function FilterSidebar({ filters, setFilters }) {
   };
 
   return (
-    <aside className="w-full md:w-64 bg-white p-5 border border-stone-200 rounded-lg shadow-sm space-y-6 text-stone-800">
+    /* h-fit and self-start prevents the sidebar from stretching down with the grid height */
+    <aside className="w-full md:w-64 h-fit self-start bg-white p-5 border border-stone-200 rounded-lg shadow-sm space-y-6 text-stone-800">
       
-      {/* Main Collection Filter */}
-      {/* <div>
-        <h3 className="font-serif font-semibold text-lg border-b border-stone-200 pb-2 mb-3 text-[#2c221e]">
-          Main Collection
-        </h3>
-        <select
-          value={filters.mainGroup}
-          onChange={handleMainGroupChange}
-          className="w-full p-2 border border-stone-300 rounded focus:ring-[#5c0612] focus:border-[#5c0612] text-xs font-semibold bg-stone-50"
-        >
-          <option value="">All Collections</option>
-          {MAIN_GROUPS.map((grp) => (
-            <option key={grp} value={grp}>{grp}</option>
-          ))}
-        </select>
-      </div> */}
-
       {/* Sub Category Filter */}
       <div>
         <h3 className="font-serif font-semibold text-lg border-b border-stone-200 pb-2 mb-3 text-[#2c221e]">
@@ -265,7 +282,7 @@ export default function FilterSidebar({ filters, setFilters }) {
       {/* Reset Filter Button */}
       <button
         onClick={() => setFilters({ mainGroup: '', category: '', maxPrice: 50000, size: '', country: '', color: '' })}
-        className="w-full py-2 bg-stone-100 text-stone-700 text-xs font-medium rounded hover:bg-stone-200 transition-colors uppercase"
+        className="w-full py-2 bg-stone-100 text-stone-700 text-xs font-medium rounded hover:bg-stone-200 transition-colors uppercase border border-stone-200"
       >
         Reset Filters
       </button>
