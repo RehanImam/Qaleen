@@ -1,113 +1,113 @@
-import React, { useState, useEffect } from 'react';
+
+
+import React, { useState } from 'react';
 import FilterSidebar from './FilterSidebar';
 import ProductCard from './ProductCard';
 
 export default function ShopView({ filters, setFilters, filteredProducts, navigateTo }) {
-  // State to track sub-category selection when under Artwork
-  const [selectedSubCat, setSelectedSubCat] = useState(null);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [sortBy, setSortBy] = useState('');
 
-  // Reset sub-category state whenever the main category changes
-  useEffect(() => {
-    setSelectedSubCat(null);
-  }, [filters.mainGroup]);
-
-  // Handle Artwork sub-div selection & update filters
-  const handleSubCatClick = (subCat) => {
-    setSelectedSubCat(subCat);
-    setFilters((prev) => ({ ...prev, category: subCat }));
-  };
-
-  // Check if we are currently on the Artwork initial landing screen (showing the 2 divs)
-  const isArtworkLanding = filters.mainGroup === 'Artwork' && !selectedSubCat;
-
-  // Determine list of products to show
-  const displayedProducts = selectedSubCat
-    ? filteredProducts.filter((p) => p.category === selectedSubCat)
-    : filteredProducts;
+  // Handle product sorting
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortBy === 'price-low') return a.price - b.price;
+    if (sortBy === 'price-high') return b.price - a.price;
+    if (sortBy === 'title-asc') return a.title.localeCompare(b.title);
+    return 0; // Default / Featured
+  });
 
   return (
-    <div className="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-10">
-      <div className="flex flex-col md:flex-row gap-6 md:gap-8">
-        
-        {/* Render FilterSidebar ONLY when NOT on the Artwork landing screen */}
-        {!isArtworkLanding && (
-          <FilterSidebar filters={filters} setFilters={setFilters} />
-        )}
+    <div className="w-full bg-white font-serif min-h-screen pb-16">
+      
+      {/* Sub-Header Control Bar */}
+      <div className="w-full border-t border-b border-stone-200 px-4 sm:px-8 py-3.5 bg-white">
+        <div className="max-w-7xl mx-auto flex items-center justify-between font-serif text-xs sm:text-sm text-stone-700">
+          
+          {/* LEFT SIDE: Filter / Sort by ∨ */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            {/* Filter Toggle Button */}
+            <button
+              onClick={() => setIsFilterOpen(true)}
+              className="flex items-center gap-2 hover:text-black transition-colors font-light tracking-wide text-stone-800"
+            >
+              <span>Filter</span>
+            </button>
 
-        <div className="flex-1">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-6 border-b border-stone-200 pb-4">
-            <h2 className="font-serif text-xl sm:text-2xl text-[#2c221e]">
-              {filters.mainGroup ? `${filters.mainGroup} Collection` : 'All Collections'}
-              {filters.mainGroup === 'Artwork' && selectedSubCat && ` - ${selectedSubCat}`}
-              {!isArtworkLanding && ` (${displayedProducts.length})`}
-            </h2>
+            {/* Separator / */}
+            <span className="text-stone-300 font-sans">/</span>
 
-            {/* Back button if a sub-category is selected */}
-            {filters.mainGroup === 'Artwork' && selectedSubCat && (
-              <button
-                onClick={() => {
-                  setSelectedSubCat(null);
-                  setFilters((prev) => ({ ...prev, category: null }));
-                }}
-                className="text-xs text-[#5c0612] underline font-semibold cursor-pointer"
+            {/* Exact "Sort by ∨" Dropdown as per Image */}
+            <div className="relative inline-flex items-center group cursor-pointer">
+              {/* Display Text & Arrow */}
+              <div className="flex items-center gap-2 text-stone-800 font-light tracking-wide hover:text-black transition-colors">
+                <span>Sort by</span>
+                <svg
+                  className="w-3 h-3 text-stone-600 stroke-[1.5]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+
+              {/* Invisible native select overlaid on top to keep functional sorting */}
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
               >
-                ← Back to Artwork Categories
-              </button>
-            )}
+              
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="title-asc">Alphabetically: A-Z</option>
+              </select>
+            </div>
           </div>
 
-          {/* ARTWORK INITIAL VIEW: Show 2 Divs First (No Sidebar, No Data) */}
-          {isArtworkLanding ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 my-8 max-w-4xl mx-auto">
-              <div
-                onClick={() => handleSubCatClick('Handmade Wall Tapestry')}
-                className="cursor-pointer bg-stone-100 border border-stone-300 rounded-xl p-8 text-center hover:shadow-lg transition-all group"
-              >
-                <div className="w-16 h-16 bg-[#5c0612] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl group-hover:scale-110 transition-transform">
-                  🎨
-                </div>
-                <h3 className="font-serif text-xl text-[#2c221e] font-semibold mb-2">
-                  Handmade Wall Tapestry
-                </h3>
-                <p className="text-stone-600 text-sm">
-                  Explore exquisite handcrafted tapestry artwork for your walls.
-                </p>
-              </div>
+          {/* RIGHT SIDE: Product Count */}
+          <div className="text-stone-600 font-light tracking-wide text-xs sm:text-sm">
+            {sortedProducts.length} {sortedProducts.length === 1 ? 'product' : 'products'}
+          </div>
 
-              <div
-                onClick={() => handleSubCatClick('Framed Textile Art')}
-                className="cursor-pointer bg-stone-100 border border-stone-300 rounded-xl p-8 text-center hover:shadow-lg transition-all group"
-              >
-                <div className="w-16 h-16 bg-[#5c0612] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl group-hover:scale-110 transition-transform">
-                  🖼️
-                </div>
-                <h3 className="font-serif text-xl text-[#2c221e] font-semibold mb-2">
-                  Framed Textile Art
-                </h3>
-                <p className="text-stone-600 text-sm">
-                  Browse elegant framed textile artwork pieces.
-                </p>
-              </div>
-            </div>
-          ) : displayedProducts.length === 0 ? (
-            <div className="text-center py-16 bg-white rounded-lg border border-stone-200">
-              <p className="text-stone-500 text-sm">No products found matching the selected filters.</p>
-            </div>
-          ) : (
-            /* PRODUCT GRID DISPLAY */
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-              {displayedProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  onSelect={(prod) => navigateTo('productDetail', { product: prod })}
-                />
-              ))}
-            </div>
-          )}
         </div>
       </div>
+
+      {/* Filter Sidebar Drawer */}
+      <FilterSidebar
+        isOpen={isFilterOpen}
+        onClose={() => setIsFilterOpen(false)}
+        filters={filters}
+        setFilters={setFilters}
+        totalResults={sortedProducts.length}
+      />
+
+      {/* Product Grid Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 pt-6 sm:pt-8">
+        {sortedProducts.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 sm:gap-x-6 sm:gap-y-10">
+            {sortedProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onSelect={(prod) => navigateTo('productDetail', { product: prod })}
+              />
+            ))}
+          </div>
+        ) : (
+          /* Empty State */
+          <div className="text-center py-20 space-y-4">
+            <p className="text-stone-500 text-base font-sans">No products match your selected filters.</p>
+            <button
+              onClick={() => setFilters({ mainGroup: '', category: '', maxPrice: 50000, size: '', country: '', color: '' })}
+              className="px-6 py-2 bg-stone-900 text-white text-xs tracking-wider uppercase font-sans hover:bg-stone-800 transition-colors"
+            >
+              Clear All Filters
+            </button>
+          </div>
+        )}
+      </div>
+
     </div>
   );
 }

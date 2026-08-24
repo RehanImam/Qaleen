@@ -1,3 +1,4 @@
+
 export const MAIN_GROUPS = ["Carpet", "Prayer Mat", "Door Mat", "Artwork"];
 
 export const SUB_CATEGORIES = {

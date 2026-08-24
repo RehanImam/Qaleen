@@ -1,87 +1,124 @@
+
+
 import React, { useState } from 'react';
-import { CATEGORIES } from '../data/products';
 
 export default function Navbar({ cartCount, onOpenCart, navigateTo }) {
-  const [showCategories, setShowCategories] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Custom Categories List
+  const navCategories = [
+    { name: 'CARPET', slug: 'carpet' },
+    { name: 'PRAYER MAT', slug: 'prayer mat' },
+    { name: 'ARTWORKS', slug: 'artworks' },
+    { name: 'CUSTOM', slug: 'custom' },
+    { name: 'PROJECT', slug: 'project' },
+    { name: 'BLOG', slug: 'blog' },
+  ];
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#faf7f2] border-b border-amber-900/10 shadow-sm">
-      {/* Top Banner */}
-      <div className="bg-[#5c0612] text-[#faf7f2] text-xs py-1.5 text-center font-light tracking-wide">
+    <header className="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+      {/* 1. Top Announcement Bar */}
+      <div className="bg-[#5c0612] text-white text-xs py-2 text-center font-medium tracking-wide w-full">
         Free shipping on orders over ₹1,999 • Easy 7-day returns
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      {/* 2. Main High-Navbar (Border Removed) */}
+      <div 
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className={`w-full transition-all duration-300 ${
+          isHovered 
+            ? 'bg-white text-black shadow-md' 
+            : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent text-white'
+        }`}
+      >
+        <div className="w-full px-8 lg:px-16 py-4">
           
-          {/* Logo */}
-          <div 
-            onClick={() => navigateTo('home')} 
-            className="cursor-pointer flex items-baseline font-serif text-2xl sm:text-3xl tracking-tight text-[#2c221e]"
-          >
-            <span className="font-bold">Qaleen</span>
-            <span className="italic ml-1 font-light text-[#5c0612]">Bhaiya</span>
-          </div>
-
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex space-x-8 items-center text-sm tracking-wider uppercase font-medium text-stone-700">
-            <button 
+          {/* TOP ROW: Logo - Tall Search Bar - Right Icons */}
+          <div className="flex items-center justify-between h-20 mb-3">
+            
+            {/* Logo Left */}
+            <div 
               onClick={() => navigateTo('home')} 
-              className="hover:text-[#5c0612] transition-colors"
+              className="cursor-pointer flex items-baseline font-serif text-3xl sm:text-4xl tracking-tight select-none"
             >
-              Shop
-            </button>
-
-            {/* Category Dropdown */}
-            <div className="relative">
-              <button 
-                onClick={() => setShowCategories(!showCategories)}
-                className="hover:text-[#5c0612] transition-colors flex items-center gap-1 uppercase"
-              >
-                Categories ▾
-              </button>
-
-              {showCategories && (
-                <div 
-                  className="absolute left-0 mt-3 w-[600px] bg-white border border-stone-200 rounded-lg shadow-2xl p-6 grid grid-cols-2 gap-3 z-50 text-xs font-sans capitalize tracking-normal"
-                  onMouseLeave={() => setShowCategories(false)}
-                >
-                  {CATEGORIES.map((cat, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => {
-                        navigateTo('shop', { category: cat });
-                        setShowCategories(false);
-                      }}
-                      className="text-left px-2 py-1.5 hover:bg-amber-50 hover:text-[#5c0612] rounded transition-colors text-stone-800 font-medium"
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-              )}
+              <span className="font-extrabold">Qaleen</span>
+              <span className={`italic ml-1.5 font-light ${isHovered ? 'text-[#5c0612]' : 'text-amber-200'}`}>
+                Bhaiya
+              </span>
             </div>
 
-            <button 
-              onClick={() => navigateTo('shop')} 
-              className="hover:text-[#5c0612] transition-colors"
-            >
-              Our Story
-            </button>
-          </nav>
+            {/* Center Search Bar */}
+            <div className="flex-1 max-w-2xl mx-12 hidden md:block">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className={`w-full bg-transparent border text-sm tracking-wider px-5 py-3 pr-20 outline-none transition-colors ${
+                    isHovered 
+                      ? 'border-black text-black placeholder-stone-600' 
+                      : 'border-white/70 text-white placeholder-stone-200'
+                  }`}
+                />
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-3">
+                  <svg className="w-5 h-5 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                  <svg className="w-5 h-5 opacity-90 border border-current p-0.5 rounded-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                    <circle cx="12" cy="13" r="3" strokeWidth="1.8" />
+                  </svg>
+                </div>
+              </div>
+            </div>
 
-          {/* Right Action Icons & Bag */}
-          <div className="flex items-center space-x-5 text-stone-700">
-            <button 
-              onClick={onOpenCart} 
-              className="flex items-center gap-2 bg-[#5c0612] text-white px-4 py-2 rounded-full hover:bg-[#42040d] transition-all text-xs tracking-wider uppercase"
-            >
-              <span>Bag</span>
-              <span className="bg-white text-[#5c0612] font-bold rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                {cartCount}
-              </span>
-            </button>
+            {/* Right Icons: Heart, Account, Bag */}
+            <div className="flex items-center space-x-7">
+              <button className="hover:opacity-75 transition-opacity" title="Wishlist">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </button>
+
+              <button className="hover:opacity-75 transition-opacity" title="Account">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </button>
+
+              <button 
+                onClick={onOpenCart} 
+                className="relative hover:opacity-75 transition-opacity"
+                title="Cart"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+                {cartCount > 0 && (
+                  <span className="absolute -top-1.5 -right-2 bg-[#5c0612] text-white text-[10px] font-bold rounded-full w-4.5 h-4.5 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </button>
+            </div>
+
           </div>
+
+          {/* BOTTOM ROW: Clean Navigation without bottom border */}
+          <nav className="hidden md:flex items-center justify-between w-full pt-3 pb-2 text-[13px] tracking-[0.25em] font-semibold uppercase">
+            {navCategories.map((item) => (
+              <button
+                key={item.slug}
+                onClick={() => navigateTo('shop', { category: item.slug })}
+                className="hover:opacity-70 transition-opacity"
+              >
+                {item.name}
+              </button>
+            ))}
+          </nav>
 
         </div>
       </div>
