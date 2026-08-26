@@ -1,5 +1,4 @@
 
-
 // import { useState } from 'react';
 // import Navbar from './components/Navbar';
 
@@ -47,11 +46,7 @@
 //     setIsCartOpen(true);
 //   };
 
-// <<<<<<< HEAD
-  
 //   // Filter products logic
-// =======
-// >>>>>>> 0a25e27 (update navbar)
 //   const filteredProducts = PRODUCTS.filter((p) => {
 //     if (filters.mainGroup && p.mainGroup !== filters.mainGroup) return false;
 //     if (filters.category && p.category !== filters.category) return false;
@@ -187,13 +182,11 @@
 //   );
 // }
 
-
-
 import { useState } from 'react';
 import Navbar from './components/Navbar';
-
 import { PRODUCTS } from './data/products';
 import Categories from './components/Categories';
+import Bestsellers from './components/Bestsellers'; // Imported Bestsellers component
 import ShopView from './components/ShopView';
 import ProductDetail from './components/ProductDetail';
 import CartDrawer from './components/CartDrawer';
@@ -225,7 +218,7 @@ export default function App() {
     }
     if (params.product) {
       setSelectedProduct(params.product);
-      setSelectedSize(params.product.sizes[0] || '4x6');
+      setSelectedSize(params.product.sizes ? params.product.sizes[0] : '4x6');
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -236,7 +229,6 @@ export default function App() {
     setIsCartOpen(true);
   };
 
-  // Filter products logic
   const filteredProducts = PRODUCTS.filter((p) => {
     if (filters.mainGroup && p.mainGroup !== filters.mainGroup) return false;
     if (filters.category && p.category !== filters.category) return false;
@@ -263,10 +255,8 @@ export default function App() {
         {/* HOME PAGE */}
         {currentPage === 'home' && (
           <div className="bg-white">
-            {/* HERO BANNER - Full Top-to-Bottom Bleed Coverage */}
+            {/* HERO BANNER */}
             <section className="relative w-full h-screen flex items-center justify-start overflow-hidden bg-stone-900 text-white">
-              
-              {/* Image starting directly from the top */}
               <div className="absolute inset-0 z-0">
                 <img 
                   src="https://d3o59fu9acgbkr.cloudfront.net/jrc2021/home/master/2026/8/3/jrc-desktop-banner-8-3-2026-3-56-49-PM.jpg" 
@@ -276,7 +266,6 @@ export default function App() {
                 <div className="absolute inset-0 bg-black/25" />
               </div>
 
-              {/* Slider Left Arrow */}
               <button 
                 className="absolute left-6 z-20 w-11 h-11 rounded-full bg-white/80 hover:bg-white text-black flex items-center justify-center transition-all shadow-md"
                 aria-label="Previous Slide"
@@ -286,7 +275,6 @@ export default function App() {
                 </svg>
               </button>
 
-              {/* Slider Right Arrow */}
               <button 
                 className="absolute right-6 z-20 w-11 h-11 rounded-full bg-white/80 hover:bg-white text-black flex items-center justify-center transition-all shadow-md"
                 aria-label="Next Slide"
@@ -296,17 +284,14 @@ export default function App() {
                 </svg>
               </button>
 
-              {/* Hero Overlay Text */}
               <div className="relative z-10 w-full px-10 md:px-16 pt-32">
                 <div className="max-w-xl space-y-4">
                   <p className="text-sm font-light tracking-wide text-stone-200">
                     Your patio, monsoon ready
                   </p>
-
                   <h1 className="font-sans text-4xl sm:text-5xl md:text-6xl font-normal tracking-[0.08em] uppercase text-white leading-tight">
                     OUTDOOR RUGS
                   </h1>
-
                   <div className="pt-2">
                     <button 
                       onClick={() => navigateTo('shop')}
@@ -317,16 +302,19 @@ export default function App() {
                   </div>
                 </div>
               </div>
-
             </section>
 
+            {/* Categories */}
             <Categories navigateTo={navigateTo}/>
+
+            {/* BESTSELLERS SECTION (ADDED HERE) */}
+            <Bestsellers navigateTo={navigateTo} />
           </div>
         )}
 
         {/* SHOP PAGE */}
         {currentPage === 'shop' && (
-          <div className="pt-44 bg-white">
+          <div className="bg-white pt-2">
             <Breadcrumb
               currentPage={currentPage} 
               selectedProduct={selectedProduct} 
@@ -343,7 +331,7 @@ export default function App() {
 
         {/* PRODUCT DETAIL PAGE */}
         {currentPage === 'productDetail' && selectedProduct && (
-          <div className="pt-44 bg-white">
+          <div className="bg-white pt-2">
             <Breadcrumb
               currentPage={currentPage} 
               selectedProduct={selectedProduct} 
