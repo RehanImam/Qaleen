@@ -48,7 +48,7 @@ export default function Categories({ navigateTo }) {
   return (
     <section 
       ref={sectionRef}
-      className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 lg:pt-36 pb-20 sm:pb-28 lg:pb-36 bg-[#f5efe6]"
+      className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 lg:pt-36 pb-20 sm:pb-28 lg:pb-36 bg-[#faf8f5]"
     >
       
       {/* Top Header Section */}
@@ -70,9 +70,15 @@ export default function Categories({ navigateTo }) {
         {categoryItems.map((cat, idx) => (
           <div
             key={cat.title}
-            onClick={() => navigateTo("shop", { mainGroup: cat.mainGroup })}
+            onClick={() => {
+              if (cat.mainGroup === "Custom") {
+                navigateTo("custom");
+              } else {
+                navigateTo("shop", { mainGroup: cat.mainGroup });
+              }
+            }}
             style={{ transitionDelay: `${idx * 100}ms` }}
-            className={`group cursor-pointer flex flex-col bg-[#f5efe6] overflow-hidden transition-all duration-700 ease-out ${
+            className={`group cursor-pointer flex flex-col bg-[#faf8f5] overflow-hidden transition-all duration-700 ease-out ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
@@ -86,7 +92,7 @@ export default function Categories({ navigateTo }) {
             </div>
 
             {/* Bottom Info Row: Title on Left, Arrow on Right */}
-            <div className="py-3 px-2 sm:px-3 flex items-center justify-between bg-[#f5efe6]">
+            <div className="py-3 px-2 sm:px-3 flex items-center justify-between bg-[#faf8f5]">
               <span className="font-sans text-[11px] sm:text-xs text-stone-800 tracking-[0.16em] uppercase font-medium group-hover:text-black transition-colors">
                 {cat.title}
               </span>

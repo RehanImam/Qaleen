@@ -22,7 +22,7 @@ export default function ProductDetail({ product, selectedSize, setSelectedSize, 
   };
 
   return (
-    <div className="w-full bg-[#f5efe6] font-serif text-stone-800 pb-20 pt-4">
+    <div className="w-full bg-[#faf8f5] font-serif text-stone-800 pb-20 pt-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           

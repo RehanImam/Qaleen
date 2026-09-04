@@ -114,10 +114,14 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
     }, 200);
   };
 
-  // Direct Click handler: Navigates immediately to the category page (same as home screen cards)
+  // Direct Click handler: Navigates immediately to custom landing page or category page
   const handleTriggerClick = (item) => {
     setActiveMegaMenu(null);
-    if (item.mainGroup) {
+    if (item.slug === 'custom') {
+      navigateTo('custom');
+    } else if (item.slug === 'project') {
+      navigateTo('project');
+    } else if (item.mainGroup) {
       navigateTo('shop', { mainGroup: item.mainGroup });
     } else {
       navigateTo('shop', { category: item.slug });
@@ -179,7 +183,7 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
         }}
         className={`w-full relative transition-all duration-300 ${
           isNavbarWhite 
-            ? 'bg-[#f5efe6] text-stone-900 shadow-xs border-b border-stone-200/50' 
+            ? 'bg-[#faf8f5] text-stone-900 shadow-xs border-b border-stone-200/50' 
             : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent text-white'
         }`}
       >
@@ -371,7 +375,7 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
 
       {/* 4. Responsive Mobile Drawer with Accordion */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-[#f5efe6] border-t border-stone-200/80 shadow-2xl max-h-[80vh] overflow-y-auto px-6 py-6 text-left">
+        <div className="md:hidden bg-[#faf8f5] border-t border-stone-200/80 shadow-2xl max-h-[80vh] overflow-y-auto px-6 py-6 text-left">
           <ul className="space-y-4">
             {navCategories.map((item) => {
               const megaData = MEGA_MENU_REGISTRY[item.slug];
@@ -383,7 +387,11 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
                       type="button"
                       onClick={() => {
                         setIsMobileMenuOpen(false);
-                        if (item.mainGroup) {
+                        if (item.slug === 'custom') {
+                          navigateTo('custom');
+                        } else if (item.slug === 'project') {
+                          navigateTo('project');
+                        } else if (item.mainGroup) {
                           navigateTo('shop', { mainGroup: item.mainGroup });
                         } else {
                           navigateTo('shop', { category: item.slug });

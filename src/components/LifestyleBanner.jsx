@@ -66,7 +66,7 @@ export default function LifestyleBanner({ navigateTo }) {
           <div className="pt-2 sm:pt-4">
             <button
               onClick={() => navigateTo && navigateTo('shop')}
-              className="inline-flex items-center gap-3 bg-[#f5efe6] text-stone-900 px-8 py-3.5 text-xs font-sans font-semibold tracking-[0.2em] uppercase hover:bg-white hover:shadow-lg transition-all transform active:scale-95"
+              className="inline-flex items-center gap-3 bg-[#faf8f5] text-stone-900 px-8 py-3.5 text-xs font-sans font-semibold tracking-[0.2em] uppercase hover:bg-white hover:shadow-lg transition-all transform active:scale-95"
             >
               <span>Find your rug</span>
               <svg className="w-3.5 h-3.5 stroke-[2] transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

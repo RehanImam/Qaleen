@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Footer() {
+export default function Footer({ navigateTo }) {
   return (
     <footer className="bg-[#2c221e] text-[#faf7f2] border-t border-stone-800">
       {/* Rich Footer Content Above Copyright */}
@@ -29,11 +29,12 @@ function Footer() {
                 SHOP
               </h4>
               <ul className="space-y-2.5 text-xs sm:text-sm font-sans font-light text-stone-300">
-                <li><a href="#all-rugs" className="hover:text-white transition-colors">All Rugs</a></li>
-                <li><a href="#carpet" className="hover:text-white transition-colors">Carpet</a></li>
-                <li><a href="#prayer-mat" className="hover:text-white transition-colors">Prayer Mat</a></li>
-                <li><a href="#door-mat" className="hover:text-white transition-colors">Door Mat</a></li>
-                <li><a href="#artwork" className="hover:text-white transition-colors">Artwork</a></li>
+                <li><button type="button" onClick={() => navigateTo && navigateTo('shop')} className="hover:text-white transition-colors text-left">All Rugs</button></li>
+                <li><button type="button" onClick={() => navigateTo && navigateTo('shop', { mainGroup: 'Carpet' })} className="hover:text-white transition-colors text-left">Carpet</button></li>
+                <li><button type="button" onClick={() => navigateTo && navigateTo('shop', { mainGroup: 'Prayer Mat' })} className="hover:text-white transition-colors text-left">Prayer Mat</button></li>
+                <li><button type="button" onClick={() => navigateTo && navigateTo('custom')} className="text-[#e2b86b] hover:text-white font-medium transition-colors text-left flex items-center gap-1.5"><span>Bespoke & Custom</span><span className="text-[10px] bg-[#5c0612] px-1.5 py-0.5 rounded text-white tracking-wider">NEW</span></button></li>
+                <li><button type="button" onClick={() => navigateTo && navigateTo('project')} className="hover:text-white transition-colors text-left">Our Projects</button></li>
+                <li><button type="button" onClick={() => navigateTo && navigateTo('shop', { mainGroup: 'Artwork' })} className="hover:text-white transition-colors text-left">Artwork</button></li>
               </ul>
             </div>
 
@@ -103,5 +104,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;

@@ -196,6 +196,8 @@ import ProductDetail from './components/ProductDetail';
 import CartDrawer from './components/CartDrawer';
 import Footer from './components/Footer';
 import Breadcrumb from './components/Breadcrumb';
+import CustomPage from './components/CustomPage';
+import ProjectPage from './components/ProjectPage';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -246,7 +248,7 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen bg-[#f5efe6] font-sans text-stone-800 flex flex-col relative">
+    <div className="min-h-screen bg-[#faf8f5] font-sans text-stone-800 flex flex-col relative">
 
       {/* Header Navbar */}
       <Navbar
@@ -257,11 +259,11 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 w-full bg-[#f5efe6]">
+      <main className="flex-1 w-full bg-[#faf8f5]">
 
         {/* HOME PAGE */}
         {currentPage === 'home' && (
-          <div className="bg-[#f5efe6]">
+          <div className="bg-[#faf8f5]">
             {/* HERO BANNER */}
             <section className="relative w-full h-screen flex items-center justify-start overflow-hidden bg-stone-900 text-white">
               <div className="absolute inset-0 z-0">
@@ -331,9 +333,33 @@ export default function App() {
           </div>
         )}
 
+        {/* CUSTOM BESPOKE SERVICES PAGE */}
+        {currentPage === 'custom' && (
+          <div className="bg-[#faf8f5]">
+            <Breadcrumb
+              currentPage={currentPage}
+              selectedProduct={selectedProduct}
+              navigateTo={navigateTo}
+            />
+            <CustomPage navigateTo={navigateTo} />
+          </div>
+        )}
+
+        {/* PROJECT PORTFOLIO PAGE */}
+        {currentPage === 'project' && (
+          <div className="bg-[#faf8f5]">
+            <Breadcrumb
+              currentPage={currentPage}
+              selectedProduct={selectedProduct}
+              navigateTo={navigateTo}
+            />
+            <ProjectPage navigateTo={navigateTo} />
+          </div>
+        )}
+
         {/* SHOP PAGE */}
         {currentPage === 'shop' && (
-          <div className="bg-[#f5efe6]">
+          <div className="bg-[#faf8f5]">
             <Breadcrumb
               currentPage={currentPage}
               selectedProduct={selectedProduct}
@@ -350,7 +376,7 @@ export default function App() {
 
         {/* PRODUCT DETAIL PAGE */}
         {currentPage === 'productDetail' && selectedProduct && (
-          <div className="bg-[#f5efe6]">
+          <div className="bg-[#faf8f5]">
             <Breadcrumb
               currentPage={currentPage}
               selectedProduct={selectedProduct}
@@ -374,7 +400,7 @@ export default function App() {
         cart={cart}
       />
 
-      <Footer />
+      <Footer navigateTo={navigateTo} />
     </div>
   );
 }

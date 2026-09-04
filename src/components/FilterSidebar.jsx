@@ -97,10 +97,10 @@ export default function FilterSidebar({ isOpen, onClose, filters, setFilters, to
       />
 
       {/* Slide-In Drawer */}
-      <aside className="fixed top-0 left-0 h-full w-full max-w-md bg-[#f5efe6] z-50 shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-left duration-300 border-r border-stone-200/80">
+      <aside className="fixed top-0 left-0 h-full w-full max-w-md bg-[#faf8f5] z-50 shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-left duration-300 border-r border-stone-200/80">
         
         {/* Drawer Header */}
-        <div className="flex justify-between items-center px-6 py-5 border-b border-stone-200/80 bg-[#f5efe6]">
+        <div className="flex justify-between items-center px-6 py-5 border-b border-stone-200/80 bg-[#faf8f5]">
           <div className="flex items-center gap-2.5">
             <div>
               <span className="block text-[11px] font-sans uppercase tracking-[0.2em] text-[#b89047] font-semibold">
@@ -393,7 +393,7 @@ export default function FilterSidebar({ isOpen, onClose, filters, setFilters, to
         </div>
 
         {/* Footer Action Button */}
-        <div className="p-5 border-t border-stone-200/80 bg-[#f5efe6] space-y-2">
+        <div className="p-5 border-t border-stone-200/80 bg-[#faf8f5] space-y-2">
           <button
             onClick={onClose}
             className="w-full py-3.5 bg-[#5c0612] text-white font-sans text-xs tracking-[0.2em] uppercase hover:bg-stone-900 transition-colors shadow-md cursor-pointer font-semibold"

@@ -79,7 +79,7 @@ export default function NewsletterBand() {
                 />
                 <button
                   type="submit"
-                  className="bg-[#f5efe6] text-[#5c0612] px-8 py-3.5 text-xs font-sans font-semibold tracking-[0.2em] uppercase hover:bg-white hover:shadow-lg transition-all active:scale-95 whitespace-nowrap"
+                  className="bg-[#faf8f5] text-[#5c0612] px-8 py-3.5 text-xs font-sans font-semibold tracking-[0.2em] uppercase hover:bg-white hover:shadow-lg transition-all active:scale-95 whitespace-nowrap"
                 >
                   Subscribe
                 </button>

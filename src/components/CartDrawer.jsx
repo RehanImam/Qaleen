@@ -19,7 +19,7 @@ export default function CartDrawer({ isOpen, onClose, cart }) {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex justify-end">
-      <div className="bg-[#f5efe6] w-full max-w-md h-full p-6 flex flex-col justify-between shadow-2xl">
+      <div className="bg-[#faf8f5] w-full max-w-md h-full p-6 flex flex-col justify-between shadow-2xl">
         <div>
           <div className="flex justify-between items-center border-b pb-4">
             <h3 className="font-serif text-xl font-bold text-[#2c221e]">Shopping Bag</h3>

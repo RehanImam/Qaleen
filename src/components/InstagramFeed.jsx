@@ -52,7 +52,7 @@ export default function InstagramFeed() {
   return (
     <section 
       ref={sectionRef}
-      className="w-full bg-[#f5efe6] py-20 sm:py-28 lg:py-32"
+      className="w-full bg-[#faf8f5] py-20 sm:py-28 lg:py-32"
     >
       <div className="w-full max-w-[1800px] mx-auto px-6 sm:px-10 lg:px-16">
         

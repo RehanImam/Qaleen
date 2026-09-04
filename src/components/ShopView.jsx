@@ -22,10 +22,10 @@ export default function ShopView({ filters, setFilters, filteredProducts, naviga
     (filters.maxPrice < 50000 ? 1 : 0);
 
   return (
-    <div className="w-full bg-[#f5efe6] font-serif min-h-screen pb-20">
+    <div className="w-full bg-[#faf8f5] font-serif min-h-screen pb-20">
       
       {/* (A) TOOLBAR ROW (Filter / Sort by / product count) */}
-      <div className="w-full border-b border-stone-200/70 py-4 sm:py-5 bg-[#f5efe6]">
+      <div className="w-full border-b border-stone-200/70 py-4 sm:py-5 bg-[#faf8f5]">
         <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between font-serif text-xs sm:text-sm text-stone-700">
           
           {/* Left Side: Filter and Sort by ▾ grouped together, LEFT-ALIGNED */}
