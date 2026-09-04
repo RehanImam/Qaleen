@@ -22,7 +22,7 @@ export default function ProductDetail({ product, selectedSize, setSelectedSize, 
   };
 
   return (
-    <div className="w-full bg-white font-serif text-stone-800 pb-20 pt-4">
+    <div className="w-full bg-[#f5efe6] font-serif text-stone-800 pb-20 pt-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
@@ -104,7 +104,7 @@ export default function ProductDetail({ product, selectedSize, setSelectedSize, 
             {/* TRY IN YOUR SPACE */}
             <div className="pt-2">
               <button className="flex items-center gap-2 text-stone-800 text-xs font-sans tracking-widest uppercase hover:text-black transition-colors">
-                <svg className="w-5 h-5 stroke-[1.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 stroke-[1.3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                 </svg>
                 <span className="underline underline-offset-4">TRY IN YOUR SPACE</span>

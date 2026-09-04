@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const BESTSELLER_PRODUCTS = [
   {
@@ -45,17 +45,49 @@ const BESTSELLER_PRODUCTS = [
 
 export default function Bestsellers({ navigateTo }) {
   const [hoveredId, setHoveredId] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.12 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="max-w-7xl mx-auto px-3 sm:px-8 py-10 sm:py-14 bg-white">
-      {/* Heading */}
-      <h2 className="text-2xl sm:text-4xl font-extrabold text-stone-900 text-center tracking-widest uppercase mb-6 sm:mb-10">
-        BESTSELLERS
-      </h2>
+    <section 
+      ref={sectionRef}
+      className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-24 sm:pb-32 lg:pb-40 bg-[#f5efe6]"
+    >
+      {/* Heading & Subtext */}
+      <div 
+        className={`mb-12 sm:mb-16 lg:mb-20 text-center transition-all duration-700 ease-out ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+        }`}
+      >
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-stone-900 tracking-[0.2em] uppercase">
+          BESTSELLERS
+        </h2>
+        <p className="text-xs sm:text-sm font-light text-stone-500 tracking-[0.16em] uppercase mt-2.5">
+          Our Most Loved And Coveted Designs
+        </p>
+      </div>
 
-      {/* Grid: Mobile me 2 columns (grid-cols-2) & Laptop me 4 columns (lg:grid-cols-4) */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-        {BESTSELLER_PRODUCTS.map((product) => {
+      {/* Grid: 4 Columns matching Category section proportions */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
+        {BESTSELLER_PRODUCTS.map((product, idx) => {
           const isHovered = hoveredId === product.id;
 
           return (
@@ -64,10 +96,13 @@ export default function Bestsellers({ navigateTo }) {
               onClick={() => navigateTo('productDetail', { product })}
               onMouseEnter={() => setHoveredId(product.id)}
               onMouseLeave={() => setHoveredId(null)}
-              className="group cursor-pointer flex flex-col"
+              style={{ transitionDelay: `${idx * 100}ms` }}
+              className={`group cursor-pointer flex flex-col transition-all duration-700 ease-out ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
             >
-              {/* Image Container */}
-              <div className="relative w-full aspect-[4/5] overflow-hidden bg-stone-100 rounded-xs mb-2 sm:mb-4">
+              {/* Image Container with matching 3/4 portrait ratio */}
+              <div className="relative w-full aspect-[3/4] overflow-hidden bg-stone-100 rounded-xs mb-2.5 sm:mb-3">
                 
                 {/* Discount Badge */}
                 <span className="absolute top-2 left-2 z-10 bg-[#333333] text-white text-[9px] sm:text-[11px] font-bold px-1.5 py-0.5 rounded-xs">

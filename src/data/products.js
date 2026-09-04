@@ -1,5 +1,5 @@
 
-export const MAIN_GROUPS = ["Carpet", "Prayer Mat", "Door Mat", "Artwork"];
+export const MAIN_GROUPS = ["Carpet", "Prayer Mat", "Artwork", "Custom"];
 
 export const SUB_CATEGORIES = {
   "Carpet": [
@@ -27,16 +27,22 @@ export const SUB_CATEGORIES = {
     "Turkish Silk Prayer Rug",
     "Travel Foldable Prayer Mat"
   ],
+  "Artwork": [
+    "Handmade Wall Tapestry",
+    "Framed Textile Art",
+    "Vintage Carpet Art Wall Hanging"
+  ],
+  "Custom": [
+    "Bespoke Living Room Rug",
+    "Custom Sized Runner",
+    "Monogrammed Hand-Tufted Rug",
+    "Custom Colorway Carpet"
+  ],
   "Door Mat": [
     "Coir Door Mats",
     "Rubber Anti-Slip Door Mats",
     "Absorbent Microfiber Mats",
     "Designer Welcome Mats"
-  ],
-  "Artwork": [
-    "Handmade Wall Tapestry",
-    "Framed Textile Art",
-    "Vintage Carpet Art Wall Hanging"
   ]
 };
 
@@ -88,6 +94,7 @@ const generateAllProducts = () => {
           if (mainGroup === "Prayer Mat") basePrice = 2500;
           if (mainGroup === "Door Mat") basePrice = 850;
           if (mainGroup === "Artwork") basePrice = 18000;
+          if (mainGroup === "Custom") basePrice = 22000;
 
           const price = basePrice + (idCounter * 17) % 15000;
           const originalPrice = price + 3500 + ((idCounter * 23) % 8000);
@@ -98,6 +105,11 @@ const generateAllProducts = () => {
             ? ["6x8", "6x9", "7x8", "7x10", "8x10", "9x12"]
             : ["2x6", "3x5", "4x5","4x6", "5x7", "5x8", "6x7" ];
 
+          const imgIndex = (idCounter - 1) % IMAGES.length;
+          const primaryImage = IMAGES[imgIndex];
+          const secondaryImage = IMAGES[(imgIndex + 1) % IMAGES.length];
+          const tertiaryImage = IMAGES[(imgIndex + 2) % IMAGES.length];
+
           items.push({
             id: String(idCounter),
             title: `${prefix} ${country} ${subCat}`,
@@ -105,11 +117,14 @@ const generateAllProducts = () => {
             category: subCat,
             price: price,
             originalPrice: originalPrice,
+            discountBadge: "10% off",
             rating: rating,
             sizes: sizeList,
             country: country,
             color: colorObj.name,
-            image: IMAGES[(idCounter - 1) % IMAGES.length]
+            image: primaryImage,
+            hoverImage: secondaryImage,
+            images: [primaryImage, secondaryImage, tertiaryImage]
           });
 
           idCounter++;

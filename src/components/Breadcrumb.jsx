@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Breadcrumb({ currentPage, selectedProduct, navigateTo }) {
   return (
-    <div className="bg-stone-100 border-b border-stone-200 py-2 px-4 sm:px-8 text-xs text-stone-500">
+    <div className="bg-[#f5efe6] border-b border-stone-200/70 py-2 px-4 sm:px-8 text-xs text-stone-500">
       <span className="hover:underline cursor-pointer" onClick={() => navigateTo('home')}>
         Home
       </span>

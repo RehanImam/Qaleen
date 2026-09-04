@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import FilterSidebar from './FilterSidebar';
 import ProductCard from './ProductCard';
@@ -16,33 +14,44 @@ export default function ShopView({ filters, setFilters, filteredProducts, naviga
     return 0; // Default / Featured
   });
 
+  // Active filter count for badge
+  const activeFilterCount =
+    (filters.subCategory || filters.category ? 1 : 0) +
+    (filters.size ? 1 : 0) +
+    (filters.color ? 1 : 0) +
+    (filters.maxPrice < 50000 ? 1 : 0);
+
   return (
-    <div className="w-full bg-white font-serif min-h-screen pb-16">
+    <div className="w-full bg-[#f5efe6] font-serif min-h-screen pb-20">
       
-      {/* Sub-Header Control Bar */}
-      <div className="w-full border-t border-b border-stone-200 px-4 sm:px-8 py-3.5 bg-white">
-        <div className="max-w-7xl mx-auto flex items-center justify-between font-serif text-xs sm:text-sm text-stone-700">
+      {/* (A) TOOLBAR ROW (Filter / Sort by / product count) */}
+      <div className="w-full border-b border-stone-200/70 py-4 sm:py-5 bg-[#f5efe6]">
+        <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between font-serif text-xs sm:text-sm text-stone-700">
           
-          {/* LEFT SIDE: Filter / Sort by ∨ */}
+          {/* Left Side: Filter and Sort by ▾ grouped together, LEFT-ALIGNED */}
           <div className="flex items-center gap-3 sm:gap-4">
             {/* Filter Toggle Button */}
             <button
               onClick={() => setIsFilterOpen(true)}
-              className="flex items-center gap-2 hover:text-black transition-colors font-light tracking-wide text-stone-800"
+              className="flex items-center gap-2 hover:text-[#5c0612] transition-colors font-light tracking-wide text-stone-800 cursor-pointer"
             >
               <span>Filter</span>
+              {activeFilterCount > 0 && (
+                <span className="w-4 h-4 rounded-full bg-[#5c0612] text-white text-[10px] font-sans font-medium flex items-center justify-center">
+                  {activeFilterCount}
+                </span>
+              )}
             </button>
 
             {/* Separator / */}
-            <span className="text-stone-300 font-sans">/</span>
+            <span className="text-stone-300 font-sans select-none">/</span>
 
-            {/* Exact "Sort by ∨" Dropdown as per Image */}
+            {/* "Sort by ▾" Dropdown */}
             <div className="relative inline-flex items-center group cursor-pointer">
-              {/* Display Text & Arrow */}
-              <div className="flex items-center gap-2 text-stone-800 font-light tracking-wide hover:text-black transition-colors">
+              <div className="flex items-center gap-1.5 text-stone-800 font-light tracking-wide hover:text-[#5c0612] transition-colors">
                 <span>Sort by</span>
                 <svg
-                  className="w-3 h-3 text-stone-600 stroke-[1.5]"
+                  className="w-3 h-3 text-stone-600 stroke-[1.5] transition-transform group-hover:translate-y-0.5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -57,7 +66,7 @@ export default function ShopView({ filters, setFilters, filteredProducts, naviga
                 onChange={(e) => setSortBy(e.target.value)}
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
               >
-              
+                <option value="">Featured</option>
                 <option value="price-low">Price: Low to High</option>
                 <option value="price-high">Price: High to Low</option>
                 <option value="title-asc">Alphabetically: A-Z</option>
@@ -65,7 +74,7 @@ export default function ShopView({ filters, setFilters, filteredProducts, naviga
             </div>
           </div>
 
-          {/* RIGHT SIDE: Product Count */}
+          {/* Right Side: Product Count right-aligned and vertically centered */}
           <div className="text-stone-600 font-light tracking-wide text-xs sm:text-sm">
             {sortedProducts.length} {sortedProducts.length === 1 ? 'product' : 'products'}
           </div>
@@ -82,10 +91,10 @@ export default function ShopView({ filters, setFilters, filteredProducts, naviga
         totalResults={sortedProducts.length}
       />
 
-      {/* Product Grid Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 pt-6 sm:pt-8">
+      {/* (B) PRODUCT GRID SECTION (Larger, image-forward layout matching Reference Image 2) */}
+      <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
         {sortedProducts.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 sm:gap-x-6 sm:gap-y-10">
+          <div className="grid grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-6 sm:gap-x-8 lg:gap-x-9 gap-y-12 sm:gap-y-16">
             {sortedProducts.map((product) => (
               <ProductCard
                 key={product.id}
@@ -99,10 +108,19 @@ export default function ShopView({ filters, setFilters, filteredProducts, naviga
           <div className="text-center py-20 space-y-4">
             <p className="text-stone-500 text-base font-sans">No products match your selected filters.</p>
             <button
-              onClick={() => setFilters({ mainGroup: '', category: '', maxPrice: 50000, size: '', country: '', color: '' })}
-              className="px-6 py-2 bg-stone-900 text-white text-xs tracking-wider uppercase font-sans hover:bg-stone-800 transition-colors"
+              onClick={() =>
+                setFilters({
+                  mainGroup: '',
+                  category: '',
+                  maxPrice: 50000,
+                  size: '',
+                  country: '',
+                  color: '',
+                })
+              }
+              className="text-xs tracking-wider uppercase underline font-sans text-stone-700 hover:text-black cursor-pointer"
             >
-              Clear All Filters
+              Reset All Filters
             </button>
           </div>
         )}
