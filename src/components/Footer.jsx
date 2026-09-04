@@ -33,7 +33,7 @@ export default function Footer({ navigateTo }) {
                 <li><button type="button" onClick={() => navigateTo && navigateTo('shop', { mainGroup: 'Carpet' })} className="hover:text-white transition-colors text-left">Carpet</button></li>
                 <li><button type="button" onClick={() => navigateTo && navigateTo('shop', { mainGroup: 'Prayer Mat' })} className="hover:text-white transition-colors text-left">Prayer Mat</button></li>
                 <li><button type="button" onClick={() => navigateTo && navigateTo('custom')} className="text-[#e2b86b] hover:text-white font-medium transition-colors text-left flex items-center gap-1.5"><span>Bespoke & Custom</span><span className="text-[10px] bg-[#5c0612] px-1.5 py-0.5 rounded text-white tracking-wider">NEW</span></button></li>
-                <li><button type="button" onClick={() => navigateTo && navigateTo('project')} className="hover:text-white transition-colors text-left">Our Projects</button></li>
+                <li><button type="button" onClick={() => navigateTo && navigateTo('project')} className="hover:text-white transition-colors text-left">Archives</button></li>
                 <li><button type="button" onClick={() => navigateTo && navigateTo('shop', { mainGroup: 'Artwork' })} className="hover:text-white transition-colors text-left">Artwork</button></li>
               </ul>
             </div>

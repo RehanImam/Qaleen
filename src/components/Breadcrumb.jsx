@@ -18,7 +18,7 @@ export default function Breadcrumb({ currentPage, selectedProduct, navigateTo })
         <>
           <span className="mx-2">/</span>
           <span className="text-stone-800 font-medium">
-            Our Projects
+            Archives
           </span>
         </>
       )}

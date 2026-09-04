@@ -649,7 +649,7 @@ export default function ProjectPage({ navigateTo }) {
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-tight text-stone-900 leading-tight">
             Our{' '}
             <span className="italic font-serif text-[#b89047] font-normal">
-              Projects
+              Archives
             </span>
           </h1>
 

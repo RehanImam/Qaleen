@@ -8,7 +8,6 @@ const createWhatsAppUrl = (message) => {
 
 export default function CustomPage({ navigateTo }) {
   const [openFaq, setOpenFaq] = useState(null);
-  const [activeLightbox, setActiveLightbox] = useState(null);
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -101,45 +100,6 @@ export default function CustomPage({ navigateTo }) {
       num: '04',
       title: 'Delivered & Installed',
       desc: 'Insured doorstep delivery across India with seamless tracking, white-glove packaging, and installation support.',
-    },
-  ];
-
-  const galleryProjects = [
-    {
-      title: 'Oversized Silk & Wool Living Room Carpet',
-      location: 'Penthouse · New Delhi',
-      category: 'Custom Carpet · 16×12 ft',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80',
-    },
-    {
-      title: 'Solid Teak Float Frame for Heritage Kashmiri Textile',
-      location: 'Private Villa · Mumbai',
-      category: 'Custom Framing · Museum Glass',
-      image: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=80',
-    },
-    {
-      title: 'Modular Dining Room Gallery Wall Ecosystem',
-      location: 'Duplex Residence · Bengaluru',
-      category: 'Custom Wall Design',
-      image: 'https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=900&q=80',
-    },
-    {
-      title: 'Geometric Hand-Tufted Runner with Custom Dye Match',
-      location: 'Boutique Retreat · Goa',
-      category: 'Custom Runner · 22×4 ft',
-      image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=900&q=80',
-    },
-    {
-      title: 'Burnished Brass & Gold Leaf Beveled Mirror Encasement',
-      location: 'Heritage Suite · Jaipur',
-      category: 'Custom Framing',
-      image: 'https://images.unsplash.com/photo-1600166898405-da9535204843?auto=format&fit=crop&w=900&q=80',
-    },
-    {
-      title: 'Hand-Loomed Woolen Acoustic Tapestry Wall',
-      location: 'Architect Studio · Hyderabad',
-      category: 'Custom Wall Installation',
-      image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=900&q=80',
     },
   ];
 
@@ -241,7 +201,55 @@ export default function CustomPage({ navigateTo }) {
 
 
       {/* ========================================================================= */}
-      {/* B. INTRO STRIP                                                            */}
+      {/* B. HOW IT WORKS (Process Section)                                         */}
+      {/* ========================================================================= */}
+      <section id="how-it-works" className="w-full bg-[#f4ece1]/70 border-y border-stone-200/70 py-16 sm:py-24">
+        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+          
+          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+            <span className="text-xs font-sans font-medium tracking-[0.25em] text-[#b89047] uppercase block mb-2">
+              SEAMLESS CONCIERGE PROCESS
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-light text-stone-900 tracking-tight">
+              From Vision to Your Floor
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative">
+            {processSteps.map((step, idx) => (
+              <div key={step.num} className="relative bg-[#faf8f5] p-7 border border-stone-200/80 flex flex-col justify-between space-y-4 shadow-2xs hover:shadow-md transition-shadow">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="w-9 h-9 rounded-full bg-[#5c0612] text-white font-serif text-sm font-medium flex items-center justify-center">
+                      {step.num}
+                    </span>
+                    <span className="text-[10px] font-sans font-medium text-stone-400 tracking-widest uppercase">
+                      STEP {idx + 1}
+                    </span>
+                  </div>
+                  <h4 className="font-serif text-lg font-medium text-stone-900 tracking-tight mb-2">
+                    {step.title}
+                  </h4>
+                  <p className="font-sans text-xs text-stone-600 font-light leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+
+                <div className="pt-2 border-t border-stone-200/50">
+                  <span className="text-[10px] font-sans text-[#b89047] uppercase tracking-wider font-semibold">
+                    100% Artisan Made
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* ========================================================================= */}
+      {/* C. INTRO STRIP                                                            */}
       {/* ========================================================================= */}
       <section className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 pt-20 sm:pt-28 pb-12 sm:pb-16 text-center">
         <p className="text-xs font-sans font-medium tracking-[0.26em] text-[#b89047] uppercase mb-3">
@@ -341,104 +349,53 @@ export default function CustomPage({ navigateTo }) {
 
 
       {/* ========================================================================= */}
-      {/* D. HOW IT WORKS (Process Section)                                         */}
+      {/* E. THE ARCHIVES BANNER (Direct navigation to Archives page)              */}
       {/* ========================================================================= */}
-      <section id="how-it-works" className="w-full bg-[#f4ece1]/70 border-y border-stone-200/70 py-20 sm:py-28">
-        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+      <section className="w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 py-16 sm:py-24">
+        <div className="relative overflow-hidden bg-[#2c221e] text-[#faf7f2] border border-stone-800 shadow-xl p-8 sm:p-14 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-10">
           
-          <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-20">
-            <span className="text-xs font-sans font-medium tracking-[0.25em] text-[#b89047] uppercase block mb-2">
-              SEAMLESS CONCIERGE PROCESS
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-light text-stone-900 tracking-tight">
-              From Vision to Your Floor
-            </h2>
+          {/* Subtle background ambient interior image */}
+          <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
+              alt="Archives background"
+              className="w-full h-full object-cover"
+            />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative">
-            {processSteps.map((step, idx) => (
-              <div key={step.num} className="relative bg-[#faf8f5] p-7 border border-stone-200/80 flex flex-col justify-between space-y-4 shadow-2xs hover:shadow-md transition-shadow">
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="w-9 h-9 rounded-full bg-[#5c0612] text-white font-serif text-sm font-medium flex items-center justify-center">
-                      {step.num}
-                    </span>
-                    <span className="text-[10px] font-sans font-medium text-stone-400 tracking-widest uppercase">
-                      STEP {idx + 1}
-                    </span>
-                  </div>
-                  <h4 className="font-serif text-lg font-medium text-stone-900 tracking-tight mb-2">
-                    {step.title}
-                  </h4>
-                  <p className="font-sans text-xs text-stone-600 font-light leading-relaxed">
-                    {step.desc}
-                  </p>
-                </div>
-
-                <div className="pt-2 border-t border-stone-200/50">
-                  <span className="text-[10px] font-sans text-[#b89047] uppercase tracking-wider font-semibold">
-                    100% Artisan Made
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-
-      {/* ========================================================================= */}
-      {/* E. INSPIRATION GALLERY                                                    */}
-      {/* ========================================================================= */}
-      <section className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 py-20 sm:py-28">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 border-b border-stone-200/80 pb-6">
-          <div>
-            <span className="text-xs font-sans font-medium tracking-[0.25em] text-[#b89047] uppercase block mb-2">
-              COMPLETED ARCHIVES
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-light text-stone-900 tracking-tight">
-              Crafted for Discerning Spaces
-            </h2>
-          </div>
-          <p className="font-sans text-xs sm:text-sm text-stone-500 font-light mt-3 md:mt-0 max-w-sm">
-            A curation of bespoke commissions delivered across private estates, penthouses, and studios.
-          </p>
-        </div>
-
-        {/* 3-Column Image Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {galleryProjects.map((item, idx) => (
-            <div
-              key={idx}
-              onClick={() => setActiveLightbox(item)}
-              className="group cursor-pointer flex flex-col bg-white border border-stone-200/80 overflow-hidden shadow-2xs hover:shadow-lg transition-all duration-300"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden bg-stone-100">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="bg-white/90 backdrop-blur-xs text-stone-900 text-xs font-sans px-4 py-2 uppercase tracking-widest font-medium shadow-md">
-                    View Project
-                  </span>
-                </div>
-              </div>
-              <div className="p-4 sm:p-5 space-y-1 bg-[#faf8f5]">
-                <span className="text-[10px] font-sans uppercase tracking-wider text-[#b89047] font-semibold block">
-                  {item.category}
-                </span>
-                <h4 className="font-serif text-sm sm:text-[15px] font-medium text-stone-900 line-clamp-1 group-hover:text-[#5c0612] transition-colors">
-                  {item.title}
-                </h4>
-                <p className="text-[11px] font-sans text-stone-400 font-light">
-                  {item.location}
-                </p>
-              </div>
+          <div className="relative z-10 max-w-2xl text-left space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-xs border border-white/20 rounded-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" />
+              <span className="text-[10px] sm:text-[11px] font-sans font-medium tracking-[0.22em] uppercase text-stone-300">
+                OUR PROJECTS
+              </span>
             </div>
-          ))}
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-white leading-tight">
+              Explore Our{' '}
+              <span className="italic font-serif text-[#d4af37] font-normal">
+                Archives
+              </span>
+            </h2>
+
+            <p className="font-sans text-xs sm:text-sm font-light text-stone-300 leading-relaxed max-w-xl">
+              Discover our complete collection of bespoke carpets, conservation frames, and custom wall ecosystems delivered across private estates, penthouses, and studios.
+            </p>
+          </div>
+
+          <div className="relative z-10 shrink-0 w-full md:w-auto">
+            <button
+              type="button"
+              onClick={() => navigateTo('project')}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#faf8f5] text-[#5c0612] hover:bg-[#d4af37] hover:text-stone-900 px-8 py-4 text-xs font-sans font-semibold tracking-[0.2em] uppercase transition-all shadow-lg active:scale-95 group cursor-pointer"
+            >
+              <span>View Archives</span>
+              <svg className="w-4 h-4 stroke-[2] transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+          </div>
+
         </div>
       </section>
 
@@ -499,59 +456,6 @@ export default function CustomPage({ navigateTo }) {
         </div>
       </section>
 
-
-      {/* ========================================================================= */}
-      {/* LIGHTBOX MODAL FOR GALLERY                                                */}
-      {/* ========================================================================= */}
-      {activeLightbox && (
-        <div 
-          onClick={() => setActiveLightbox(null)}
-          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200"
-        >
-          <div 
-            onClick={(e) => e.stopPropagation()}
-            className="bg-[#faf8f5] max-w-3xl w-full max-h-[90vh] overflow-hidden shadow-2xl flex flex-col relative"
-          >
-            <button
-              type="button"
-              onClick={() => setActiveLightbox(null)}
-              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black transition-colors cursor-pointer"
-              aria-label="Close modal"
-            >
-              ✕
-            </button>
-            <div className="relative aspect-[16/11] bg-stone-900 overflow-hidden">
-              <img
-                src={activeLightbox.image}
-                alt={activeLightbox.title}
-                className="w-full h-full object-cover object-center"
-              />
-            </div>
-            <div className="p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-stone-200">
-              <div>
-                <span className="text-[10px] font-sans tracking-widest uppercase text-[#b89047] font-semibold block mb-1">
-                  {activeLightbox.category}
-                </span>
-                <h3 className="font-serif text-lg sm:text-xl font-medium text-stone-900">
-                  {activeLightbox.title}
-                </h3>
-                <p className="font-sans text-xs text-stone-500 mt-1">
-                  {activeLightbox.location}
-                </p>
-              </div>
-              <a
-                href={createWhatsAppUrl(`Hi Qaleen Bhaiya! I saw your completed project "${activeLightbox.title}" and would like to commission something similar.`)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#5c0612] text-white px-6 py-3 text-xs font-sans font-semibold tracking-wider uppercase hover:bg-stone-900 transition-colors shrink-0 shadow-sm"
-              >
-                <span>Commission Similar</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
 
     </div>
   );

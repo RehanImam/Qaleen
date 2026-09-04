@@ -69,7 +69,7 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
     { name: 'PRAYER MAT', slug: 'prayer mat', mainGroup: 'Prayer Mat' },
     { name: 'ARTWORKS', slug: 'artworks', mainGroup: 'Artwork' },
     { name: 'CUSTOM', slug: 'custom', mainGroup: 'Custom' },
-    { name: 'PROJECT', slug: 'project' },
+    { name: 'ARCHIVES', slug: 'project' },
     { name: 'BLOG', slug: 'blog' },
   ];
 
