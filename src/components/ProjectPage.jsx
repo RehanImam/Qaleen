@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 const WHATSAPP_NUMBER = '919905763301';
 
@@ -618,7 +618,7 @@ const CardImageGallery = ({ images, title, onClick }) => {
   };
 
   return (
-    <div 
+    <div
       className="absolute inset-0 cursor-pointer overflow-hidden group/gallery"
       onClick={() => onClick(currentIndex)}
     >
@@ -628,12 +628,11 @@ const CardImageGallery = ({ images, title, onClick }) => {
           src={img}
           alt={`${title} - view ${i + 1}`}
           loading="lazy"
-          className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ease-in-out ${
-            i === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
-          }`}
+          className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ease-in-out ${i === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
         />
       ))}
-      
+
       {/* Navigation Arrows */}
       {images.length > 1 && (
         <>
@@ -673,7 +672,7 @@ export default function ProjectPage({ navigateTo }) {
       if (categoryFromUrl && CATEGORIES.some(c => c.id === categoryFromUrl)) {
         setActiveCategory(categoryFromUrl);
       }
-      
+
       if (pageFromUrl) {
         const parsedPage = parseInt(pageFromUrl, 10);
         if (!isNaN(parsedPage) && parsedPage > 0) {
@@ -709,7 +708,7 @@ export default function ProjectPage({ navigateTo }) {
     updateUrl(catId, 1);
     scrollToTop();
   };
-  
+
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
     updateUrl(activeCategory, newPage);
@@ -717,7 +716,7 @@ export default function ProjectPage({ navigateTo }) {
   };
 
   const filteredProjects = PROJECTS_DATA.filter((p) => p.category === activeCategory);
-  
+
   // Pagination logic
   const projectsPerPage = 10;
   const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
@@ -727,40 +726,42 @@ export default function ProjectPage({ navigateTo }) {
     setLightboxData({ isOpen: true, project, imageIndex: index });
   };
 
-  const closeLightbox = () => {
+  const closeLightbox = useCallback(() => {
     setLightboxData({ isOpen: false, project: null, imageIndex: 0 });
-  };
+  }, []);
 
-  const lightboxNext = (e) => {
-    e.stopPropagation();
-    if (lightboxData.project) {
-      const maxIndex = lightboxData.project.images.length - 1;
-      setLightboxData(prev => ({ ...prev, imageIndex: prev.imageIndex === maxIndex ? 0 : prev.imageIndex + 1 }));
-    }
-  };
+  const lightboxNext = useCallback((e) => {
+    if (e) e.stopPropagation();
+    setLightboxData(prev => {
+      if (!prev.project) return prev;
+      const maxIndex = prev.project.images.length - 1;
+      return { ...prev, imageIndex: prev.imageIndex === maxIndex ? 0 : prev.imageIndex + 1 };
+    });
+  }, []);
 
-  const lightboxPrev = (e) => {
-    e.stopPropagation();
-    if (lightboxData.project) {
-      const maxIndex = lightboxData.project.images.length - 1;
-      setLightboxData(prev => ({ ...prev, imageIndex: prev.imageIndex === 0 ? maxIndex : prev.imageIndex - 1 }));
-    }
-  };
-  
+  const lightboxPrev = useCallback((e) => {
+    if (e) e.stopPropagation();
+    setLightboxData(prev => {
+      if (!prev.project) return prev;
+      const maxIndex = prev.project.images.length - 1;
+      return { ...prev, imageIndex: prev.imageIndex === 0 ? maxIndex : prev.imageIndex - 1 };
+    });
+  }, []);
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (!lightboxData.isOpen) return;
       if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') lightboxNext(e);
-      if (e.key === 'ArrowLeft') lightboxPrev(e);
+      if (e.key === 'ArrowRight') lightboxNext();
+      if (e.key === 'ArrowLeft') lightboxPrev();
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [lightboxData.isOpen]);
+  }, [lightboxData.isOpen, closeLightbox, lightboxNext, lightboxPrev]);
 
   return (
     <div className="w-full bg-[#faf8f5] text-stone-800 font-serif min-h-screen">
-      
+
       {/* HEADER */}
       <section className="w-full border-b border-stone-200/80 bg-gradient-to-b from-[#f4ece1]/80 to-[#faf8f5] pt-14 sm:pt-20 pb-12 sm:pb-16 text-center">
         <div className="max-w-4xl mx-auto px-6">
@@ -783,7 +784,7 @@ export default function ProjectPage({ navigateTo }) {
       </section>
 
       {/* CATEGORY SELECTOR */}
-      <div 
+      <div
         ref={listTopRef}
         className="sticky top-0 z-20 bg-[#faf8f5]/95 backdrop-blur-md border-b border-stone-200/80 shadow-2xs py-3.5 sm:py-4 transition-all"
       >
@@ -796,11 +797,10 @@ export default function ProjectPage({ navigateTo }) {
                   key={cat.id}
                   type="button"
                   onClick={() => handleCategoryChange(cat.id)}
-                  className={`shrink-0 px-5 sm:px-6 py-2.5 text-xs font-sans tracking-[0.16em] uppercase rounded-full transition-all duration-200 cursor-pointer ${
-                    isActive
+                  className={`shrink-0 px-5 sm:px-6 py-2.5 text-xs font-sans tracking-[0.16em] uppercase rounded-full transition-all duration-200 cursor-pointer ${isActive
                       ? 'bg-[#5c0612] text-[#F7F2E7] font-semibold shadow-sm'
                       : 'bg-transparent text-stone-500 hover:text-stone-900 font-medium border border-transparent'
-                  }`}
+                    }`}
                 >
                   <span>{cat.label}</span>
                 </button>
@@ -812,7 +812,7 @@ export default function ProjectPage({ navigateTo }) {
 
       {/* PROJECT LIST */}
       <main className="w-full max-w-[1200px] mx-auto px-4 sm:px-8 lg:px-12 py-12 sm:py-16">
-        
+
         {filteredProjects.length === 0 ? (
           <div className="text-center py-20 bg-white border border-stone-200/80 p-12 max-w-xl mx-auto shadow-2xs">
             <span className="text-3xl mb-4 block text-[#b89047]">✦</span>
@@ -834,8 +834,7 @@ export default function ProjectPage({ navigateTo }) {
           </div>
         ) : (
           <div className="space-y-20 sm:space-y-28">
-            {displayedProjects.map((project, idx) => {
-              const projectNumber = (currentPage - 1) * projectsPerPage + idx + 1;
+            {displayedProjects.map((project) => {
               return (
                 <article
                   key={project.id}
@@ -843,11 +842,11 @@ export default function ProjectPage({ navigateTo }) {
                 >
                   {/* Left: Project Images (Auto-Fading Gallery) - Fixed 4:5 aspect ratio constraint on container */}
                   <div className="w-full md:w-[48%] lg:w-[46%] relative overflow-hidden bg-stone-100 aspect-[4/5] group/carousel">
-                    
-                    <CardImageGallery 
-                      images={project.images} 
+
+                    <CardImageGallery
+                      images={project.images}
                       title={project.title}
-                      onClick={(index) => openLightbox(project, index)} 
+                      onClick={(index) => openLightbox(project, index)}
                     />
 
                     <div className="absolute bottom-4 right-4 px-2 py-1 bg-black/50 text-white font-sans text-[10px] tracking-widest rounded-sm z-20 pointer-events-none">
@@ -946,7 +945,7 @@ export default function ProjectPage({ navigateTo }) {
           <button className="absolute top-6 right-6 text-white/70 hover:text-white z-50 p-2" onClick={closeLightbox}>
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
-          
+
           <div className="absolute top-6 left-6 text-white/50 font-sans text-xs tracking-widest uppercase">
             {lightboxData.project.title}
           </div>
@@ -956,14 +955,14 @@ export default function ProjectPage({ navigateTo }) {
           </div>
 
           <button className="absolute left-4 sm:left-10 text-white/50 hover:text-white p-4 z-50" onClick={lightboxPrev}>
-             <svg className="w-8 h-8 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" /></svg>
+            <svg className="w-8 h-8 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" /></svg>
           </button>
 
           <div className="relative w-full max-w-5xl max-h-[85vh] px-16 flex items-center justify-center" onClick={e => e.stopPropagation()}>
-            <img 
-              src={lightboxData.project.images[lightboxData.imageIndex]} 
-              alt={lightboxData.project.title} 
-              className="max-w-full max-h-[85vh] object-contain shadow-2xl" 
+            <img
+              src={lightboxData.project.images[lightboxData.imageIndex]}
+              alt={lightboxData.project.title}
+              className="max-w-full max-h-[85vh] object-contain shadow-2xl"
             />
           </div>
 
