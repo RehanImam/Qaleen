@@ -1,0 +1,140 @@
+export const BLOG_POSTS = [
+  {
+    id: 1,
+    slug: 'wool-vs-synthetic',
+    title: 'Wool vs. Synthetic: Which Carpet Is Right for Your Living Room?',
+    excerpt: 'Understanding the key differences in durability, texture, and longevity between natural wool and synthetic fibers.',
+    category: 'buying-guides',
+    categoryLabel: 'BUYING GUIDES',
+    date: 'OCT 12, 2026',
+    readTime: '6 MIN READ',
+    thumbnail: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=1600&q=80',
+    content: [
+      { type: 'paragraph', text: 'When selecting a carpet for a high-traffic area like a living room, one of the most fundamental decisions you will make is choosing between natural wool and synthetic fibers. Each material brings its own unique set of characteristics, advantages, and maintenance requirements to your space.' },
+      { type: 'heading', text: 'The Timeless Appeal of Wool' },
+      { type: 'paragraph', text: 'Natural wool has been the gold standard for rug making for centuries. Sourced primarily from sheep, it is inherently resilient, naturally stain-resistant (thanks to the lanolin coating on the fibers), and incredibly soft underfoot. Wool possesses a natural crimp, which acts like a tiny spring, allowing the carpet to bounce back even under heavy furniture or constant foot traffic.' },
+      { type: 'quote', text: 'A well-crafted wool rug doesn’t just decorate a room; it matures with it, developing a rich patina that synthetic fibers simply cannot replicate.' },
+      { type: 'paragraph', text: 'Furthermore, wool is an excellent insulator, helping to regulate room temperature and dampen acoustics. However, it does come with a higher initial investment and requires specific care to prevent damage from alkaline cleaning solutions or prolonged moisture exposure.' },
+      { type: 'heading', text: 'The Practicality of Synthetics' },
+      { type: 'paragraph', text: 'On the other hand, synthetic fibers—such as nylon, polyester, and polypropylene—offer incredible durability and resistance to fading. Nylon, in particular, is highly elastic and handles heavy traffic exceptionally well. These materials are generally more budget-friendly and are highly resistant to water-based stains.' },
+      { type: 'paragraph', text: 'While synthetics have come a long way in mimicking the feel of natural wool, they often lack the same depth of color and temperature-regulating properties. For households with young children or pets prone to accidents, the easy-clean nature of synthetic fibers often makes them a highly practical choice.' },
+      { type: 'heading', text: 'Making the Right Choice' },
+      { type: 'paragraph', text: 'Ultimately, the decision rests on your lifestyle and priorities. If you are looking for an heirloom piece that will age beautifully and offer unmatched comfort, a hand-knotted wool carpet is unparalleled. If practicality, budget, and immediate stain resistance are your primary concerns, a high-quality synthetic rug may be the perfect fit for your living room.' }
+    ],
+    relatedProducts: ['RUG-101', 'RUG-102', 'RUG-103'] // Mock product IDs for 'Shop the Look'
+  },
+  {
+    id: 2,
+    slug: 'removing-pet-stains',
+    title: 'The Ultimate Guide to Removing Pet Stains from Persian Rugs',
+    excerpt: 'Protect your heirloom rugs with our expert-approved methods for treating and removing stubborn pet stains without damaging the delicate fibers.',
+    category: 'care-and-maintenance',
+    categoryLabel: 'CARE & MAINTENANCE',
+    date: 'SEP 28, 2026',
+    readTime: '8 MIN READ',
+    thumbnail: 'https://images.unsplash.com/photo-1544457070-4cd773b4d71e?auto=format&fit=crop&w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1544457070-4cd773b4d71e?auto=format&fit=crop&w=1600&q=80',
+    content: [
+      { type: 'paragraph', text: 'Persian rugs are renowned for their intricate designs, vibrant natural dyes, and exceptional durability. However, introducing pets into a home with heirloom carpets requires a strategic approach to maintenance. When an accident happens, time is of the essence, but the method of cleaning is even more critical.' },
+      { type: 'heading', text: 'Act Fast, But Gently' },
+      { type: 'paragraph', text: 'The first rule of treating any stain on a hand-knotted wool or silk rug is to never scrub. Scrubbing untwists the fibers, causing permanent distortion and fuzzy patches that alter how light reflects off the pile. Instead, immediately blot the area with a clean, undyed cotton towel to absorb as much liquid as possible.' },
+      { type: 'quote', text: 'Patience is your greatest tool when treating a hand-knotted rug. Blotting requires time, but it protects the integrity of the weave.' },
+      { type: 'heading', text: 'The Vinegar and Water Solution' },
+      { type: 'paragraph', text: 'For pet urine, which is highly alkaline, you need a slightly acidic solution to neutralize the stain and prevent the natural dyes from bleeding. Mix one part white vinegar with three parts cold water. Never use hot water, as heat can set the stain permanently and shrink the wool fibers.' },
+      { type: 'paragraph', text: 'Lightly mist or dab the solution onto the affected area, working from the outside edge of the stain toward the center to prevent it from spreading. Blot continuously until the moisture is drawn out. It is crucial to elevate the damp section of the rug—by placing a bowl or block underneath—to allow air to circulate and dry the foundation thoroughly, preventing dry rot.' },
+      { type: 'heading', text: 'When to Call the Professionals' },
+      { type: 'paragraph', text: 'If the stain has dried before you noticed it, or if it is on a silk rug, do not attempt to clean it yourself. Silk fibers are highly reactive to liquid and can easily lose their luster or suffer permanent dye migration. In these cases, contact a professional oriental rug cleaner immediately.' }
+    ],
+    relatedProducts: ['CARE-201', 'RUG-105']
+  },
+  {
+    id: 3,
+    slug: 'layering-area-rugs',
+    title: 'How to Beautifully Layer Area Rugs Over Wall-to-Wall Carpet',
+    excerpt: 'Add texture, color, and personality to a room by mastering the art of layering rugs over existing carpets.',
+    category: 'styling-and-design',
+    categoryLabel: 'STYLING & DESIGN',
+    date: 'SEP 15, 2026',
+    readTime: '5 MIN READ',
+    thumbnail: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=1600&q=80',
+    content: [
+      { type: 'paragraph', text: 'Wall-to-wall carpeting often provides an excellent neutral base, but it can lack the personality and visual interest needed to anchor a room’s design scheme. Layering an area rug over broadloom carpet is a designer favorite technique to introduce color, define spaces in open floor plans, and add tactile depth.' },
+      { type: 'heading', text: 'Contrast is Key' },
+      { type: 'paragraph', text: 'The secret to successful layering lies in contrast—specifically regarding texture and pile height. If your base carpet is a low-pile or loop texture (like Berber), layering a plush Moroccan Beni Ourain or a thick shag rug adds a cozy, luxurious contrast. Conversely, if your wall-to-wall carpet is plush, a flatweave dhurrie or a low-pile vintage Persian rug will sit neatly on top without creating a tripping hazard.' },
+      { type: 'quote', text: 'Think of your base carpet as a canvas and the layered rug as the art piece that anchors your furniture arrangement.' },
+      { type: 'heading', text: 'Anchoring and Sizing' },
+      { type: 'paragraph', text: 'When sizing your layered rug, ensure it is large enough to anchor the primary furniture grouping. In a living room, at least the front legs of your sofa and chairs should rest on the area rug. Leaving a border of the base carpet visible around the room helps the layered rug feel intentional rather than like an afterthought.' },
+      { type: 'paragraph', text: 'Remember to use a specialized rug pad designed for carpet-on-carpet application. Standard hard-floor pads won’t work; you need a pad with a slight grip that prevents the top rug from bunching or “creeping” across the room as you walk on it.' }
+    ],
+    relatedProducts: ['RUG-110', 'RUG-112']
+  },
+  {
+    id: 4,
+    slug: 'hidden-motifs-oriental-carpets',
+    title: 'Understanding the Hidden Motifs and Symbols in Oriental Carpets',
+    excerpt: 'Explore the rich visual language woven into traditional carpets, where every symbol carries a historical and cultural significance.',
+    category: 'history-and-craftsmanship',
+    categoryLabel: 'HISTORY & CRAFTSMANSHIP',
+    date: 'AUG 22, 2026',
+    readTime: '10 MIN READ',
+    thumbnail: 'https://images.unsplash.com/photo-1594040226829-7f251ab46d80?auto=format&fit=crop&w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1594040226829-7f251ab46d80?auto=format&fit=crop&w=1600&q=80',
+    content: [
+      { type: 'paragraph', text: 'An authentic hand-knotted Oriental carpet is far more than a decorative floor covering; it is a woven narrative. For nomadic tribes and village weavers, carpets were a primary medium of artistic expression, a way to record history, express hopes, and protect against misfortune.' },
+      { type: 'heading', text: 'The Tree of Life' },
+      { type: 'paragraph', text: 'One of the most universal and revered motifs is the Tree of Life. Found across various rug-producing regions, this motif symbolizes the connection between the earthly realm (the roots), the human world (the trunk), and the divine (the branches reaching toward heaven). It is a symbol of immortality, fertility, and eternal life.' },
+      { type: 'quote', text: 'To read a carpet is to decipher a language older than written words, passed down through generations of master weavers.' },
+      { type: 'heading', text: 'Geometric vs. Curvilinear Designs' },
+      { type: 'paragraph', text: 'The style of the motifs often hints at the rug’s origin. Geometric patterns with sharp, angular lines are typically woven by nomadic tribes using portable horizontal looms, relying on memory rather than written patterns. Curvilinear designs, characterized by flowing floral arabesques and intricate medallions, are usually the product of city workshops utilizing large vertical looms and detailed blueprints called "cartoons."' },
+      { type: 'heading', text: 'Symbols of Protection' },
+      { type: 'paragraph', text: 'Many tribal rugs feature protective motifs designed to ward off the evil eye. The "Boteh," a teardrop-shaped motif that evolved into modern paisley, is interpreted variously as a flame, a pinecone, or a leaf, representing the universe and the eternal cycle of life. Similarly, the eight-pointed star is a common emblem of spirituality and good luck.' }
+    ],
+    relatedProducts: ['RUG-301', 'RUG-305']
+  },
+  {
+    id: 5,
+    slug: 'choosing-the-right-size',
+    title: 'The Architect’s Guide to Carpet Sizing and Placement',
+    excerpt: 'Avoid the "floating rug" mistake with our comprehensive guide to selecting the perfect carpet dimensions for your space.',
+    category: 'buying-guides',
+    categoryLabel: 'BUYING GUIDES',
+    date: 'AUG 05, 2026',
+    readTime: '7 MIN READ',
+    thumbnail: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1600&q=80',
+    content: [
+      { type: 'paragraph', text: 'One of the most common design mistakes in interior decorating is selecting a rug that is too small for the space. A diminutive rug can make a room feel disjointed and smaller than it actually is, while a properly sized carpet unifies the furniture and defines the architectural boundaries of the area.' },
+      { type: 'heading', text: 'The Living Room Rules' },
+      { type: 'paragraph', text: 'In a living room, there are three generally accepted approaches to rug placement. The most luxurious is the "All Legs On" approach, where the rug is large enough to accommodate all legs of the sofa and accent chairs, requiring a substantial 9x12 or 10x14 rug. The most common approach is "Front Legs On," where only the front legs of the seating furniture rest on the carpet, effectively tying the grouping together.' },
+      { type: 'quote', text: 'A rug should never look like an island stranded in the middle of a room; it should serve as the foundation that grounds the space.' },
+      { type: 'heading', text: 'Dining Room Dynamics' },
+      { type: 'paragraph', text: 'Dining rooms have a strict rule dictated by functionality rather than aesthetics: the rug must extend at least 24 to 36 inches beyond all sides of the dining table. This ensures that when chairs are pulled out for seating, the back legs do not fall off the edge of the rug, which causes the chair to wobble and damages the rug’s binding over time.' },
+      { type: 'paragraph', text: 'When in doubt, use blue painter’s tape on your floor to outline the dimensions of a potential rug before purchasing. This visual aid will give you a clear sense of how the carpet will interact with your furniture and traffic flows.' }
+    ],
+    relatedProducts: ['RUG-101', 'RUG-109']
+  },
+  {
+    id: 6,
+    slug: 'dyeing-techniques-natural-vs-chrome',
+    title: 'The Art of Color: Natural vs. Chrome Dyes in Hand-Knotted Rugs',
+    excerpt: 'Discover how the transition from ancient botanical dyes to modern synthetic chrome dyes changed the landscape of carpet weaving.',
+    category: 'history-and-craftsmanship',
+    categoryLabel: 'HISTORY & CRAFTSMANSHIP',
+    date: 'JUL 19, 2026',
+    readTime: '9 MIN READ',
+    thumbnail: 'https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=1600&q=80',
+    content: [
+      { type: 'paragraph', text: 'The vibrancy and longevity of a carpet’s color palette are central to its beauty and value. For millennia, the only way to impart color to wool and silk was through the meticulous extraction of pigments from nature—roots, insects, and plants. Today, the debate between natural (vegetal) dyes and modern chrome (synthetic) dyes continues among collectors and designers.' },
+      { type: 'heading', text: 'The Warmth of Natural Dyes' },
+      { type: 'paragraph', text: 'Natural dyes produce colors that are rarely flat or uniform. They exhibit "abrash"—subtle horizontal variations in color caused by differences in how batches of wool absorb the dye. Madder root produces a spectrum of reds, from brick to deep crimson; indigo yields profound blues; and weld or saffron provides vibrant yellows. These natural pigments fade gracefully over time, mellowing into the soft, harmonious tones prized in antique rugs.' },
+      { type: 'quote', text: 'Natural dyes don’t just sit on the surface of the wool; they bond with it, aging alongside the fiber to create a luminous, organic depth.' },
+      { type: 'heading', text: 'The Consistency of Chrome Dyes' },
+      { type: 'paragraph', text: 'Introduced in the mid-19th century and perfected in the 20th, chrome dyes offered weavers unprecedented consistency, colorfastness, and a drastically expanded spectrum of hues. Unlike early aniline dyes, which faded rapidly and bled when wet, high-quality modern chrome dyes are extremely stable and resistant to UV fading.' },
+      { type: 'paragraph', text: 'For contemporary designs requiring crisp, uniform fields of color or precise color-matching to interior fabrics, chrome dyes are indispensable. However, for those seeking the imperfect, soulful character of historical weaving, natural dyes remain the pinnacle of the dyer’s art.' }
+    ],
+    relatedProducts: ['RUG-404', 'RUG-405']
+  }
+];

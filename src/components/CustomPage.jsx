@@ -437,21 +437,7 @@ export default function CustomPage({ navigateTo }) {
             ))}
           </div>
 
-          {/* Bottom Consultation Prompt */}
-          <div className="text-center mt-12 space-y-3">
-            <p className="font-sans text-xs text-stone-500">
-              Have specific architectural blueprints or unconventional requirements?
-            </p>
-            <a
-              href={createWhatsAppUrl(generalMessage)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-sans font-semibold tracking-widest text-[#5c0612] uppercase hover:underline underline-offset-4"
-            >
-              <span>Speak with a Lead Consultant on WhatsApp</span>
-              <span>→</span>
-            </a>
-          </div>
+
 
         </div>
       </section>

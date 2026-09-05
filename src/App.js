@@ -182,7 +182,7 @@
 //   );
 // }
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import { PRODUCTS } from './data/products';
 import Categories from './components/Categories';
@@ -198,9 +198,20 @@ import Footer from './components/Footer';
 import Breadcrumb from './components/Breadcrumb';
 import CustomPage from './components/CustomPage';
 import ProjectPage from './components/ProjectPage';
+import BlogMain from './components/BlogMain';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const getInitialPage = () => {
+    const path = window.location.pathname;
+    if (path.startsWith('/project')) return 'project';
+    if (path.startsWith('/shop')) return 'shop';
+    if (path.startsWith('/custom')) return 'custom';
+    if (path.startsWith('/productDetail')) return 'productDetail';
+    if (path.startsWith('/blog')) return 'blog';
+    return 'home';
+  };
+
+  const [currentPage, setCurrentPage] = useState(getInitialPage());
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedSize, setSelectedSize] = useState('4x6');
   const [cart, setCart] = useState([]);
@@ -215,6 +226,21 @@ export default function App() {
     color: ''
   });
 
+  useEffect(() => {
+    const handlePopState = (event) => {
+      const path = window.location.pathname;
+      if (path.startsWith('/project')) setCurrentPage('project');
+      else if (path.startsWith('/shop')) setCurrentPage('shop');
+      else if (path.startsWith('/custom')) setCurrentPage('custom');
+      else if (path.startsWith('/productDetail')) setCurrentPage('productDetail');
+      else if (path.startsWith('/blog')) setCurrentPage('blog');
+      else setCurrentPage('home');
+    };
+    
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const navigateTo = (page, params = {}) => {
     setCurrentPage(page);
     if (params.mainGroup) {
@@ -226,6 +252,20 @@ export default function App() {
       setSelectedProduct(params.product);
       setSelectedSize(params.product.sizes ? params.product.sizes[0] : '4x6');
     }
+    
+    // Update URL history
+    let newPath = page === 'home' ? '/' : `/${page}`;
+    const searchParams = new URLSearchParams();
+    if (params.category && page === 'project') searchParams.set('category', params.category);
+    if (params.page && page === 'project') searchParams.set('page', params.page);
+    
+    // Blog params
+    if (params.category && page === 'blog') searchParams.set('category', params.category);
+    if (params.article && page === 'blog') searchParams.set('article', params.article);
+    if (params.page && page === 'blog') searchParams.set('page', params.page);
+    const qs = searchParams.toString();
+    window.history.pushState({ page, params }, '', qs ? `${newPath}?${qs}` : newPath);
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -354,6 +394,18 @@ export default function App() {
               navigateTo={navigateTo}
             />
             <ProjectPage navigateTo={navigateTo} />
+          </div>
+        )}
+
+        {/* BLOG PAGE */}
+        {currentPage === 'blog' && (
+          <div className="bg-[#faf8f5]">
+            <Breadcrumb
+              currentPage={currentPage}
+              selectedProduct={selectedProduct}
+              navigateTo={navigateTo}
+            />
+            <BlogMain navigateTo={navigateTo} />
           </div>
         )}
 

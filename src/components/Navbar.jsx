@@ -114,13 +114,14 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
     }, 200);
   };
 
-  // Direct Click handler: Navigates immediately to custom landing page or category page
   const handleTriggerClick = (item) => {
     setActiveMegaMenu(null);
     if (item.slug === 'custom') {
       navigateTo('custom');
     } else if (item.slug === 'project') {
       navigateTo('project');
+    } else if (item.slug === 'blog') {
+      navigateTo('blog');
     } else if (item.mainGroup) {
       navigateTo('shop', { mainGroup: item.mainGroup });
     } else {
@@ -391,6 +392,8 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
                           navigateTo('custom');
                         } else if (item.slug === 'project') {
                           navigateTo('project');
+                        } else if (item.slug === 'blog') {
+                          navigateTo('blog');
                         } else if (item.mainGroup) {
                           navigateTo('shop', { mainGroup: item.mainGroup });
                         } else {
