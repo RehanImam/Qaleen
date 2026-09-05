@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import MegaMenu from './MegaMenu';
 import { MEGA_MENU_REGISTRY } from '../data/megaMenuData';
@@ -170,7 +171,7 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
       }`}
     >
       {/* 1. Top Announcement Bar */}
-      <div className="bg-[#5c0612] text-white text-xs py-2 text-center font-medium tracking-wide w-full">
+      <div className="bg-[#5c0612] text-white text-xs sm:text-sm py-2.5 text-center font-medium tracking-wide w-full">
         Free shipping on orders over ₹1,999 • Easy 7-day returns
       </div>
 
@@ -184,26 +185,26 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
         }}
         className={`w-full relative transition-all duration-300 ${
           isNavbarWhite 
-            ? 'bg-[#faf8f5] text-stone-900 shadow-xs border-b border-stone-200/50' 
+            ? 'bg-[#faf8f5] text-stone-900 shadow-sm border-b border-stone-200/50' 
             : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent text-white'
         }`}
       >
-        <div className="w-full px-6 lg:px-12 py-3.5 sm:py-4">
+        <div className="w-full px-6 lg:px-12 py-5 sm:py-6">
           
           {/* SINGLE ROW: Logo Far Left - Navigation Links Center - Icons Far Right */}
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between gap-6">
             
             {/* Left group: Mobile Hamburger (mobile only) + Logo */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <button
                 type="button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`md:hidden p-1 transition-colors ${
+                className={`md:hidden p-1.5 transition-colors ${
                   isNavbarWhite ? 'text-stone-800' : 'text-white'
                 }`}
                 aria-label="Toggle mobile menu"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   {isMobileMenuOpen ? (
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M6 18L18 6M6 6l12 12" />
                   ) : (
@@ -219,19 +220,19 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
                   setIsMobileMenuOpen(false);
                   navigateTo('home');
                 }} 
-                className="cursor-pointer flex items-baseline font-serif text-2xl sm:text-3xl tracking-tight select-none shrink-0"
+                className="cursor-pointer flex items-baseline font-serif text-3xl sm:text-4xl tracking-tight select-none shrink-0"
               >
                 <span className={`font-normal ${isNavbarWhite ? 'text-stone-900' : 'text-white'}`}>
                   Qaleen
                 </span>
-                <span className={`italic ml-1.5 font-light ${isNavbarWhite ? 'text-[#5c0612]' : 'text-amber-200'}`}>
+                <span className={`italic ml-2 font-light ${isNavbarWhite ? 'text-[#5c0612]' : 'text-amber-200'}`}>
                   Bhaiya
                 </span>
               </div>
             </div>
 
             {/* 2. Navigation Links Centered in the Same Row */}
-            <nav className="hidden md:flex items-center justify-center flex-1 mx-4 gap-6 lg:gap-8 xl:gap-10 text-[11px] lg:text-[12px] tracking-[0.2em] font-medium uppercase">
+            <nav className="hidden md:flex items-center justify-center flex-1 mx-6 gap-6 lg:gap-10 xl:gap-12 text-xs lg:text-sm tracking-[0.25em] font-medium uppercase">
               {navCategories.map((item) => {
                 const hasMega = Boolean(MEGA_MENU_REGISTRY[item.slug]);
                 const isMenuOpen = activeMegaMenu === item.slug;
@@ -255,7 +256,7 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
 
                     {/* Underline indicator: active when menu is open or on hover */}
                     <span 
-                      className={`absolute bottom-0 left-0 h-[1.5px] bg-[#5c0612] transition-all duration-300 ${
+                      className={`absolute bottom-0 left-0 h-[2px] bg-[#5c0612] transition-all duration-300 ${
                         isMenuOpen ? 'w-full' : 'w-0 group-hover:w-full'
                       }`}
                     />
@@ -265,7 +266,7 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
             </nav>
 
             {/* 3. Action Icons Far Right: Search, Wishlist/Heart, Account, Bag/Cart */}
-            <div className="flex items-center space-x-5 sm:space-x-6 shrink-0">
+            <div className="flex items-center space-x-6 sm:space-x-8 shrink-0">
               
               {/* Search Icon */}
               <button 
@@ -273,25 +274,25 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
                   setIsSearchOpen(!isSearchOpen);
                   setActiveMegaMenu(null);
                 }}
-                className="hover:opacity-75 transition-opacity" 
+                className="hover:opacity-75 transition-opacity p-1" 
                 title="Search"
                 aria-label="Search"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </button>
 
               {/* Wishlist / Heart Icon */}
-              <button className="hover:opacity-75 transition-opacity hidden sm:block" title="Wishlist">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <button className="hover:opacity-75 transition-opacity hidden sm:block p-1" title="Wishlist">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </button>
 
               {/* Account Icon */}
-              <button className="hover:opacity-75 transition-opacity hidden sm:block" title="Account">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <button className="hover:opacity-75 transition-opacity hidden sm:block p-1" title="Account">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
               </button>
@@ -299,14 +300,14 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
               {/* Bag / Cart */}
               <button 
                 onClick={onOpenCart} 
-                className="relative hover:opacity-75 transition-opacity flex items-center gap-1.5"
+                className="relative hover:opacity-75 transition-opacity flex items-center gap-1.5 p-1"
                 title="Cart"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
                 {cartCount > 0 && (
-                  <span className="absolute -top-1.5 -right-2 bg-[#5c0612] text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                  <span className="absolute -top-1 -right-2 bg-[#5c0612] text-white text-[11px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
                     {cartCount}
                   </span>
                 )}
@@ -318,7 +319,7 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
 
           {/* SLIDE-DOWN SEARCH BAR */}
           {isSearchOpen && (
-            <div className="w-full mt-3 pt-3 border-t border-stone-200/80 transition-all duration-300">
+            <div className="w-full mt-4 pt-4 border-t border-stone-200/80 transition-all duration-300">
               <form onSubmit={handleSearchSubmit} className="max-w-3xl mx-auto flex items-center gap-3">
                 <div className="relative flex-1">
                   <input
@@ -327,13 +328,13 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     autoFocus
-                    className="w-full bg-stone-100 text-stone-900 text-sm tracking-wider px-4 py-2 border border-transparent outline-none focus:outline-none focus:border-transparent focus:ring-0 transition-colors rounded-xs"
+                    className="w-full bg-stone-100 text-stone-900 text-base tracking-wider px-5 py-2.5 border border-transparent outline-none focus:outline-none focus:border-transparent focus:ring-0 transition-colors rounded-xs"
                   />
                   {searchQuery && (
                     <button
                       type="button"
                       onClick={() => setSearchQuery('')}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 text-xs uppercase"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 text-xs uppercase"
                     >
                       Clear
                     </button>
@@ -342,7 +343,7 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
 
                 <button
                   type="submit"
-                  className="bg-[#5c0612] text-white px-5 py-2 text-xs font-bold tracking-wider uppercase hover:bg-stone-800 transition-colors rounded-xs"
+                  className="bg-[#5c0612] text-white px-6 py-2.5 text-xs font-bold tracking-wider uppercase hover:bg-stone-800 transition-colors rounded-xs"
                 >
                   Search
                 </button>
@@ -350,10 +351,10 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
                 <button
                   type="button"
                   onClick={() => setIsSearchOpen(false)}
-                  className="text-stone-500 hover:text-stone-900 p-1"
+                  className="text-stone-500 hover:text-stone-900 p-1.5"
                   title="Close Search"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
@@ -400,7 +401,7 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
                           navigateTo('shop', { category: item.slug });
                         }
                       }}
-                      className="text-stone-800 hover:text-[#5c0612] text-xs tracking-[0.2em] font-medium uppercase block w-full text-left"
+                      className="text-stone-800 hover:text-[#5c0612] text-sm tracking-[0.2em] font-medium uppercase block w-full text-left"
                     >
                       {item.name}
                     </button>
@@ -424,7 +425,7 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
                           navigateTo('shop', { category: item.slug });
                         }
                       }}
-                      className="text-stone-800 hover:text-[#5c0612] text-xs tracking-[0.2em] font-semibold uppercase py-1 text-left flex-1"
+                      className="text-stone-800 hover:text-[#5c0612] text-sm tracking-[0.2em] font-semibold uppercase py-1 text-left flex-1"
                     >
                       <span>{item.name}</span>
                     </button>
@@ -435,7 +436,7 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
                       aria-label={`Toggle ${item.name} sub-menu`}
                     >
                       <svg 
-                        className={`w-4 h-4 text-stone-500 transition-transform duration-200 ${
+                        className={`w-5 h-5 text-stone-500 transition-transform duration-200 ${
                           isAccordionOpen ? 'rotate-180' : ''
                         }`} 
                         fill="none" 
@@ -458,10 +459,10 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
                             <button
                               type="button"
                               onClick={() => toggleMobileSubGroup(group.title)}
-                              className="w-full flex items-center justify-between text-stone-900 font-serif text-[13px] py-1 text-left"
+                              className="w-full flex items-center justify-between text-stone-900 font-serif text-sm py-1 text-left"
                             >
                               <span>{group.title}</span>
-                              <span className="text-stone-400 text-xs font-mono">
+                              <span className="text-stone-400 text-sm font-mono">
                                 {isGroupOpen ? '−' : '+'}
                               </span>
                             </button>
@@ -481,7 +482,7 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
                                       >
                                         {isColor && (
                                           <span
-                                            className="w-2.5 h-2.5 rounded-full mr-2 shrink-0 border border-stone-300"
+                                            className="w-3 h-3 rounded-full mr-2 shrink-0 border border-stone-300"
                                             style={{
                                               background: subItem.swatch,
                                               borderColor: subItem.border || 'rgba(0,0,0,0.1)',
