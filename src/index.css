@@ -7,6 +7,16 @@ body {
   color: #2c221e;
 }
 
+/* ===== Text selection highlight (site-wide) ===== */
+::selection {
+  background-color: #f4e9e3;
+  color: #2c221e;
+}
+::-moz-selection {
+  background-color: #f4e9e3;
+  color: #2c221e;
+}
+
 /* ===== Motion system ===== */
 /* Real keyframes that replace the previously dead `animate-in`/`slide-in-*`
    utility classes (tailwindcss-animate is not installed). */
