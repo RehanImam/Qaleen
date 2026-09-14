@@ -206,6 +206,13 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
         isHome ? 'fixed top-0 left-0' : 'sticky top-0'
       } ${showNavbar ? 'translate-y-0' : '-translate-y-full'}`}
     >
+      {/* 1. Top Announcement Bar */}
+      {/* 
+      <div className="bg-[#5c0612] text-white text-xs sm:text-sm py-2.5 text-center font-medium tracking-wide w-full">
+        Free shipping on orders over ₹1,999 • Easy 7-day returns
+      </div>
+      */}
+
       {/* 2. Main Navbar */}
       <div 
         onMouseEnter={() => {
