@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
+import HeroCarousel from './components/HeroCarousel';
 import { PRODUCTS } from './data/products';
 import Categories from './components/Categories';
 import LifestyleBanner from './components/LifestyleBanner';
@@ -121,53 +122,7 @@ export default function App() {
         {currentPage === 'home' && (
           <div className="bg-[#faf8f5]">
             {/* HERO BANNER */}
-            <section className="relative w-full h-screen flex items-center justify-start overflow-hidden bg-stone-900 text-white">
-              <div className="absolute inset-0 z-0">
-                <img
-                  src="https://d3o59fu9acgbkr.cloudfront.net/jrc2021/home/master/2026/8/3/jrc-desktop-banner-8-3-2026-3-56-49-PM.jpg"
-                  alt="Qaleen Bhaiya Background"
-                  className="w-full h-full object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-black/25" />
-              </div>
-
-              <button
-                className="absolute left-6 z-20 w-11 h-11 rounded-full bg-white/80 hover:bg-white text-black flex items-center justify-center transition-all shadow-md"
-                aria-label="Previous Slide"
-              >
-                <svg className="w-5 h-5 stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-
-              <button
-                className="absolute right-6 z-20 w-11 h-11 rounded-full bg-white/80 hover:bg-white text-black flex items-center justify-center transition-all shadow-md"
-                aria-label="Next Slide"
-              >
-                <svg className="w-5 h-5 stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-
-              <div className="relative z-10 w-full px-10 md:px-16 pt-32">
-                <div className="max-w-xl space-y-4">
-                  <p className="text-sm font-light tracking-wide text-stone-200">
-                    Your patio, monsoon ready
-                  </p>
-                  <h1 className="font-sans text-4xl sm:text-5xl md:text-6xl font-normal tracking-[0.08em] uppercase text-white leading-tight">
-                    OUTDOOR RUGS
-                  </h1>
-                  <div className="pt-2">
-                    <button
-                      onClick={() => navigateTo('shop')}
-                      className="bg-white text-stone-900 px-7 py-2.5 text-xs font-semibold tracking-wider uppercase hover:bg-stone-100 transition-colors shadow-sm"
-                    >
-                      SHOP NOW
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </section>
+            <HeroCarousel navigateTo={navigateTo} />
 
             {/* Categories */}
             <Categories navigateTo={navigateTo} />

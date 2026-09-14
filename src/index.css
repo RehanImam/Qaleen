@@ -118,3 +118,16 @@ input[type="range"].luxury-slider::-moz-range-thumb:hover {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #d6d3d1;
 }
+
+/* ===== Hero Progress ===== */
+@keyframes qb-progress-fill {
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qb-progress-fill {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
