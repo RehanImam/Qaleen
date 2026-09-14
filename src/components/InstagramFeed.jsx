@@ -1,26 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
+import useReveal from '../hooks/useReveal';
 
 export default function InstagramFeed() {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.12 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const [sectionRef, isVisible] = useReveal({ threshold: 0.12 });
 
   const posts = [
     {

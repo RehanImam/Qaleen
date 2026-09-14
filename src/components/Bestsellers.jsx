@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import ProductCard from './ProductCard';
+import useReveal from '../hooks/useReveal';
 
 const DEFAULT_SIZES = ['4x6', '5x7', '5x8', '6x7', '6x9', '8x10'];
 
@@ -69,26 +70,7 @@ const BESTSELLER_PRODUCTS = [
 ];
 
 export default function Bestsellers({ navigateTo }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.12 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const [sectionRef, isVisible] = useReveal({ threshold: 0.12 });
 
   return (
     <section 

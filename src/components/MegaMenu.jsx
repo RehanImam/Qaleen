@@ -23,7 +23,7 @@ export default function MegaMenu({
     <div
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className="absolute top-full left-0 w-full bg-[#faf8f5] shadow-2xl border-t border-stone-200/80 z-40 animate-in fade-in slide-in-from-top-1 duration-200"
+      className="absolute top-full left-0 w-full bg-[#faf8f5] shadow-2xl border-t border-stone-200/80 z-40 qb-animate-slide-down"
     >
       {/* Centered, compact container keeping all category columns close together */}
       <div className={`w-full ${containerMaxWidth} mx-auto px-6 sm:px-8 py-8 sm:py-10`}>

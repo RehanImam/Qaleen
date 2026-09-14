@@ -9,54 +9,59 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [openMobileAccordion, setOpenMobileAccordion] = useState({
     carpet: true, // Carpet expanded by default in mobile menu
   });
   const [openMobileSubGroup, setOpenMobileSubGroup] = useState({});
-  const [showAnnouncement, setShowAnnouncement] = useState(true);
-
-  // Restore the dismissed state of the announcement bar (per-browser).
-  useEffect(() => {
-    try {
-      if (localStorage.getItem('qb_announcement_dismissed') === '1') {
-        setShowAnnouncement(false);
-      }
-    } catch (e) {
-      /* localStorage unavailable — keep the bar visible */
-    }
-  }, []);
-
-  const dismissAnnouncement = () => {
-    setShowAnnouncement(false);
-    try {
-      localStorage.setItem('qb_announcement_dismissed', '1');
-    } catch (e) {
-      /* ignore write failures */
-    }
-  };
-
   const headerRef = useRef(null);
   const triggerRefs = useRef({});
   const enterTimeoutRef = useRef(null);
   const leaveTimeoutRef = useRef(null);
+  const scrollSentinelRef = useRef(null);
 
   const isHome = currentPage === 'home';
   // Solid white/cream on all pages other than home; dynamic on home based on scroll, hover, search, or active mega menu
   const isNavbarWhite = !isHome || isScrolled || isHovered || isSearchOpen || Boolean(activeMegaMenu);
 
-  // Scroll listener to activate white navbar on page scroll down
+  // Activate the solid navbar once the page has scrolled past the top band.
+  // Uses an IntersectionObserver on a 40px sentinel instead of a scroll listener
+  // (no per-frame handler running on every scroll event).
+  useEffect(() => {
+    const node = scrollSentinelRef.current;
+    if (!node || typeof IntersectionObserver === 'undefined') {
+      return undefined;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Sentinel fully out of view => scrolled past the 40px band.
+        setIsScrolled(!entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  // Hide navbar on scroll down, show on scroll up
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
-        setIsScrolled(true);
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setShowNavbar(false);
+        setIsSearchOpen(false);
+        setActiveMegaMenu(null);
       } else {
-        setIsScrolled(false);
+        setShowNavbar(true);
       }
+      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   // ESC key listener: closes mega menu and returns focus to trigger
   useEffect(() => {
@@ -184,29 +189,22 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
   };
 
   return (
-    <header 
+    <>
+      {/* Scroll sentinel: sits at the top of the page (in the App's relative
+          container) so an IntersectionObserver can detect scroll past ~40px
+          without a scroll event listener. */}
+      <div
+        ref={scrollSentinelRef}
+        aria-hidden="true"
+        className="absolute top-0 left-0 h-10 w-px pointer-events-none"
+      />
+
+    <header
       ref={headerRef}
       className={`w-full z-50 transition-all duration-300 ${
         isHome ? 'fixed top-0 left-0' : 'sticky top-0'
-      }`}
+      } ${showNavbar ? 'translate-y-0' : '-translate-y-full'}`}
     >
-      {/* 1. Top Announcement Bar */}
-      {showAnnouncement && (
-        <div className="relative bg-[#5c0612] text-white text-xs py-2 px-10 text-center font-medium tracking-wide w-full">
-          Free shipping on orders over ₹1,999 • Easy 7-day returns
-          <button
-            type="button"
-            onClick={dismissAnnouncement}
-            aria-label="Dismiss announcement"
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors p-1"
-          >
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-      )}
-
       {/* 2. Main Navbar */}
       <div 
         onMouseEnter={() => {
@@ -221,7 +219,7 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
             : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent text-white'
         }`}
       >
-        <div className="w-full px-6 lg:px-12 py-3.5 sm:py-4">
+        <div className="w-full px-6 lg:px-12 py-6 sm:py-7">
           
           {/* SINGLE ROW: Logo Far Left - Navigation Links Center - Icons Far Right */}
           <div className="flex items-center justify-between gap-4">
@@ -564,5 +562,6 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
         </div>
       )}
     </header>
+    </>
   );
 }

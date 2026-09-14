@@ -269,66 +269,69 @@ export default function CustomPage({ navigateTo }) {
 
 
       {/* ========================================================================= */}
-      {/* C. THREE SERVICE BANNERS (Core of the page)                              */}
+      {/* C. THREE SERVICE SECTIONS (Full-width stacked editorial compositions)    */}
       {/* ========================================================================= */}
-      <section className="w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 space-y-16 sm:space-y-24 pb-20 sm:pb-28 lg:pb-32">
+      <section className="w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 space-y-20 sm:space-y-28 pb-20 sm:pb-28 lg:pb-32">
         {services.map((service) => (
-          <div
+          <article
             key={service.id}
-            className={`flex flex-col ${
-              service.reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'
-            } items-stretch bg-white border border-stone-200/80 shadow-sm overflow-hidden group hover:border-stone-300 transition-all duration-500`}
+            className="w-full bg-white border border-stone-200/80 shadow-sm overflow-hidden group hover:border-stone-300 transition-all duration-500"
           >
-            {/* Image Block (~55% width on desktop) */}
-            <div className="w-full lg:w-[55%] relative min-h-[360px] sm:min-h-[460px] lg:min-h-[520px] overflow-hidden bg-stone-100">
+            {/* Full-width Image Banner */}
+            <div className="relative w-full aspect-[16/10] sm:aspect-[16/8] lg:aspect-[21/8] overflow-hidden bg-stone-100">
               <img
                 src={service.image}
                 alt={service.title}
-                className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-700 ease-out"
+                className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-stone-900/10 group-hover:bg-transparent transition-colors duration-500" />
-              
+
               {/* Numbered Tag on image corner */}
               <div className="absolute top-4 left-4 sm:top-6 sm:left-6 px-3.5 py-1.5 bg-white/90 backdrop-blur-xs text-stone-900 font-serif text-xs sm:text-sm tracking-widest border border-stone-200/60 shadow-xs">
                 {service.id}
               </div>
             </div>
 
-            {/* Content Block (~45% width on desktop) */}
-            <div className="w-full lg:w-[45%] p-8 sm:p-12 lg:p-14 flex flex-col justify-between bg-[#faf8f5]">
-              <div className="space-y-4">
-                
-                {/* Eyebrow */}
-                <div className="text-[11px] font-sans font-semibold tracking-[0.22em] text-[#b89047] uppercase">
-                  {service.tag}
-                </div>
+            {/* Full-width Content Block stacked beneath the image */}
+            <div className="w-full p-8 sm:p-12 lg:p-16 bg-[#faf8f5]">
+
+              {/* Eyebrow */}
+              <div className="text-[11px] font-sans font-semibold tracking-[0.22em] text-[#b89047] uppercase mb-5">
+                {service.tag}
+              </div>
+
+              {/* Editorial two-column body across the full width */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
 
                 {/* Title & Subtitle */}
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-light text-stone-900 tracking-tight leading-tight">
-                  {service.title}
-                </h3>
-                <p className="font-serif italic text-sm sm:text-base text-stone-600">
-                  {service.subtitle}
-                </p>
+                <div className="lg:col-span-5">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-light text-stone-900 tracking-tight leading-tight">
+                    {service.title}
+                  </h3>
+                  <p className="font-serif italic text-sm sm:text-base text-stone-600 mt-3">
+                    {service.subtitle}
+                  </p>
+                </div>
 
-                {/* Editorial Copy */}
-                <p className="font-sans text-xs sm:text-sm font-light text-stone-600 leading-relaxed pt-2">
-                  {service.description}
-                </p>
+                {/* Copy + Highlights */}
+                <div className="lg:col-span-7 space-y-5">
+                  <p className="font-sans text-xs sm:text-sm font-light text-stone-600 leading-relaxed">
+                    {service.description}
+                  </p>
 
-                {/* Key Attributes Checklist */}
-                <ul className="pt-2 space-y-2 font-sans text-xs text-stone-700 border-t border-stone-200/70">
-                  {service.highlights.map((h, i) => (
-                    <li key={i} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#5c0612] mt-1.5 shrink-0" />
-                      <span className="font-light">{h}</span>
-                    </li>
-                  ))}
-                </ul>
+                  <ul className="pt-4 space-y-2.5 font-sans text-xs sm:text-sm text-stone-700 border-t border-stone-200/70">
+                    {service.highlights.map((h, i) => (
+                      <li key={i} className="flex items-start gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#5c0612] mt-1.5 shrink-0" />
+                        <span className="font-light">{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
               {/* Consultation WhatsApp CTA */}
-              <div className="pt-8">
+              <div className="pt-8 mt-8 border-t border-stone-200/70">
                 <a
                   href={createWhatsAppUrl(service.waMessage)}
                   target="_blank"
@@ -343,7 +346,7 @@ export default function CustomPage({ navigateTo }) {
               </div>
 
             </div>
-          </div>
+          </article>
         ))}
       </section>
 

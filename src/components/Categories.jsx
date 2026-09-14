@@ -1,26 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
+import useReveal from "../hooks/useReveal";
 
 export default function Categories({ navigateTo }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.12 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const [sectionRef, isVisible] = useReveal({ threshold: 0.12 });
 
   const categoryItems = [
     {
@@ -48,7 +30,7 @@ export default function Categories({ navigateTo }) {
   return (
     <section 
       ref={sectionRef}
-      className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32 bg-[#faf8f5]"
+      className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 lg:pt-16 pb-20 sm:pb-28 lg:pb-32 bg-[#faf8f5]"
     >
       
       {/* Top Header Section */}

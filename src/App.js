@@ -195,7 +195,6 @@ import ShopView from './components/ShopView';
 import ProductDetail from './components/ProductDetail';
 import CartDrawer from './components/CartDrawer';
 import Footer from './components/Footer';
-import Breadcrumb from './components/Breadcrumb';
 import CustomPage from './components/CustomPage';
 import ProjectPage from './components/ProjectPage';
 import BlogMain from './components/BlogMain';
@@ -236,7 +235,7 @@ export default function App() {
       else if (path.startsWith('/blog')) setCurrentPage('blog');
       else setCurrentPage('home');
     };
-    
+
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
@@ -252,13 +251,13 @@ export default function App() {
       setSelectedProduct(params.product);
       setSelectedSize(params.product.sizes ? params.product.sizes[0] : '4x6');
     }
-    
+
     // Update URL history
     let newPath = page === 'home' ? '/' : `/${page}`;
     const searchParams = new URLSearchParams();
     if (params.category && page === 'project') searchParams.set('category', params.category);
     if (params.page && page === 'project') searchParams.set('page', params.page);
-    
+
     // Blog params
     if (params.category && page === 'blog') searchParams.set('category', params.category);
     if (params.article && page === 'blog') searchParams.set('article', params.article);
@@ -315,6 +314,24 @@ export default function App() {
                 <div className="absolute inset-0 bg-black/25" />
               </div>
 
+              <button
+                className="absolute left-6 z-20 w-11 h-11 rounded-full bg-white/80 hover:bg-white text-black flex items-center justify-center transition-all shadow-md"
+                aria-label="Previous Slide"
+              >
+                <svg className="w-5 h-5 stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              <button
+                className="absolute right-6 z-20 w-11 h-11 rounded-full bg-white/80 hover:bg-white text-black flex items-center justify-center transition-all shadow-md"
+                aria-label="Next Slide"
+              >
+                <svg className="w-5 h-5 stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
               <div className="relative z-10 w-full px-10 md:px-16 pt-32">
                 <div className="max-w-xl space-y-4">
                   <p className="text-sm font-light tracking-wide text-stone-200">
@@ -358,11 +375,6 @@ export default function App() {
         {/* CUSTOM BESPOKE SERVICES PAGE */}
         {currentPage === 'custom' && (
           <div className="bg-[#faf8f5]">
-            <Breadcrumb
-              currentPage={currentPage}
-              selectedProduct={selectedProduct}
-              navigateTo={navigateTo}
-            />
             <CustomPage navigateTo={navigateTo} />
           </div>
         )}
@@ -370,11 +382,6 @@ export default function App() {
         {/* PROJECT PORTFOLIO PAGE */}
         {currentPage === 'project' && (
           <div className="bg-[#faf8f5]">
-            <Breadcrumb
-              currentPage={currentPage}
-              selectedProduct={selectedProduct}
-              navigateTo={navigateTo}
-            />
             <ProjectPage navigateTo={navigateTo} />
           </div>
         )}
@@ -382,11 +389,6 @@ export default function App() {
         {/* BLOG PAGE */}
         {currentPage === 'blog' && (
           <div className="bg-[#faf8f5]">
-            <Breadcrumb
-              currentPage={currentPage}
-              selectedProduct={selectedProduct}
-              navigateTo={navigateTo}
-            />
             <BlogMain navigateTo={navigateTo} />
           </div>
         )}
@@ -394,11 +396,6 @@ export default function App() {
         {/* SHOP PAGE */}
         {currentPage === 'shop' && (
           <div className="bg-[#faf8f5]">
-            <Breadcrumb
-              currentPage={currentPage}
-              selectedProduct={selectedProduct}
-              navigateTo={navigateTo}
-            />
             <ShopView
               filters={filters}
               setFilters={setFilters}
@@ -411,17 +408,11 @@ export default function App() {
         {/* PRODUCT DETAIL PAGE */}
         {currentPage === 'productDetail' && selectedProduct && (
           <div className="bg-[#faf8f5]">
-            <Breadcrumb
-              currentPage={currentPage}
-              selectedProduct={selectedProduct}
-              navigateTo={navigateTo}
-            />
             <ProductDetail
               product={selectedProduct}
               selectedSize={selectedSize}
               setSelectedSize={setSelectedSize}
               addToCart={addToCart}
-              navigateTo={navigateTo}
             />
           </div>
         )}

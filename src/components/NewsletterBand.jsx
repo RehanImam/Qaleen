@@ -1,28 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
+import useReveal from '../hooks/useReveal';
 
 export default function NewsletterBand() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const bandRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-
-    if (bandRef.current) {
-      observer.observe(bandRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const [bandRef, isVisible] = useReveal({ threshold: 0.15 });
 
   const handleSubmit = (e) => {
     e.preventDefault();

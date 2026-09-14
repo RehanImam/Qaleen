@@ -24,16 +24,17 @@ export default function ProductDetail({ product, selectedSize, setSelectedSize, 
     { name: 'Meera K.', location: 'Bengaluru', rating: 4, text: 'Gorgeous piece that anchors the whole space. Slightly larger than expected, but we love it.' },
   ];
   const avgRating = (REVIEWS.reduce((s, r) => s + r.rating, 0) / REVIEWS.length).toFixed(1);
-  // Demo array to show multiple full-size vertical images
-  const images = product?.images && product.images.length >= 5
-    ? product.images
-    : [
-        product?.image,
-        product?.image,
-        product?.image,
-        product?.image,
-        product?.image,
-      ];
+  // Gallery images: use the product's distinct image set (de-duplicated), falling
+  // back to the primary image only when nothing else is available.
+  const images = React.useMemo(() => {
+    const pool = [
+      ...(Array.isArray(product?.images) ? product.images : []),
+      product?.image,
+      product?.hoverImage,
+    ].filter(Boolean);
+    const unique = [...new Set(pool)];
+    return unique.length > 0 ? unique : [product?.image].filter(Boolean);
+  }, [product]);
 
   const [quantity, setQuantity] = useState(1);
   const [openSection, setOpenSection] = useState('description');

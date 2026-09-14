@@ -7,6 +7,50 @@ body {
   color: #2c221e;
 }
 
+/* ===== Motion system ===== */
+/* Real keyframes that replace the previously dead `animate-in`/`slide-in-*`
+   utility classes (tailwindcss-animate is not installed). */
+@keyframes qb-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes qb-slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes qb-slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@keyframes qb-slide-in-left {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.qb-animate-fade-in {
+  animation: qb-fade-in 0.3s ease-out both;
+}
+.qb-animate-slide-down {
+  animation: qb-slide-down 0.2s ease-out both;
+}
+.qb-animate-slide-in-right {
+  animation: qb-slide-in-right 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.qb-animate-slide-in-left {
+  animation: qb-slide-in-left 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Honour the OS "reduce motion" setting: drop entrance animations. Scroll-reveal
+   is handled separately in useReveal (reveals immediately under reduced motion). */
+@media (prefers-reduced-motion: reduce) {
+  .qb-animate-fade-in,
+  .qb-animate-slide-down,
+  .qb-animate-slide-in-right,
+  .qb-animate-slide-in-left {
+    animation: none;
+  }
+}
+
 /* Premium Range Slider Styling */
 input[type="range"].luxury-slider {
   -webkit-appearance: none;

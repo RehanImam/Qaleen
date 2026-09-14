@@ -93,11 +93,11 @@ export default function FilterSidebar({ isOpen, onClose, filters, setFilters, to
       {/* Backdrop */}
       <div 
         onClick={onClose}
-        className="fixed inset-0 bg-black/45 backdrop-blur-[2px] z-50 transition-opacity animate-in fade-in duration-300"
+        className="fixed inset-0 bg-black/45 backdrop-blur-[2px] z-50 transition-opacity qb-animate-fade-in"
       />
 
       {/* Slide-In Drawer */}
-      <aside className="fixed top-0 left-0 h-full w-full max-w-md bg-[#faf8f5] z-50 shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-left duration-300 border-r border-stone-200/80">
+      <aside className="fixed top-0 left-0 h-full w-full max-w-md bg-[#faf8f5] z-50 shadow-2xl flex flex-col justify-between overflow-hidden qb-animate-slide-in-left border-r border-stone-200/80">
         
         {/* Drawer Header */}
         <div className="flex justify-between items-center px-6 py-5 border-b border-stone-200/80 bg-[#faf8f5]">

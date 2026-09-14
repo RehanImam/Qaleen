@@ -1,26 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
+import useReveal from '../hooks/useReveal';
 
 export default function LifestyleBanner({ navigateTo }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const bannerRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-
-    if (bannerRef.current) {
-      observer.observe(bannerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const [bannerRef, isVisible] = useReveal({ threshold: 0.15 });
 
   return (
     <section 
