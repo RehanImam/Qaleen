@@ -10,12 +10,12 @@ export default function BlogArticle({ article, navigateTo, onBack }) {
   if (!article) return null;
 
   return (
-    <div className="w-full bg-[#F7F2E7] min-h-screen pb-24">
+    <div className="w-full bg-[#faf8f5] min-h-screen pb-24">
       {/* Navigation Bar */}
       <div className="max-w-4xl mx-auto px-6 py-8">
         <button 
           onClick={onBack}
-          className="group flex items-center text-xs tracking-widest text-[#6E1423] font-sans hover:text-[#8B1A2C] transition-colors uppercase"
+          className="group flex items-center text-xs tracking-widest text-[#5c0612] font-sans hover:text-[#7a0a1a] transition-colors uppercase"
         >
           <svg className="w-4 h-4 mr-2 transform transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
@@ -33,7 +33,7 @@ export default function BlogArticle({ article, navigateTo, onBack }) {
           <span>•</span>
           <span>{article.readTime}</span>
         </div>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#6E1423] leading-tight mb-8">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#5c0612] leading-tight mb-8">
           {article.title}
         </h1>
       </div>
@@ -62,7 +62,7 @@ export default function BlogArticle({ article, navigateTo, onBack }) {
           
           if (block.type === 'heading') {
             return (
-              <h2 key={index} className="font-serif text-3xl text-[#6E1423] mt-16 mb-6">
+              <h2 key={index} className="font-serif text-3xl text-[#5c0612] mt-16 mb-6">
                 {block.text}
               </h2>
             );
@@ -82,8 +82,8 @@ export default function BlogArticle({ article, navigateTo, onBack }) {
         })}
 
         {/* WhatsApp CTA */}
-        <div className="mt-20 pt-12 border-t border-[#6E1423]/20 text-center">
-          <h3 className="font-serif text-2xl text-[#6E1423] mb-4">
+        <div className="mt-20 pt-12 border-t border-[#5c0612]/20 text-center">
+          <h3 className="font-serif text-2xl text-[#5c0612] mb-4">
             Need Expert Advice for Your Space?
           </h3>
           <p className="text-base text-gray-600 mb-6">
@@ -99,10 +99,10 @@ export default function BlogArticle({ article, navigateTo, onBack }) {
       </div>
 
       {/* Shop the Look */}
-      <div className="mt-24 bg-white border-t border-[#6E1423]/10">
+      <div className="mt-24 bg-white border-t border-[#5c0612]/10">
         <div className="max-w-7xl mx-auto pt-8">
           <div className="text-center mb-[-40px]">
-             <h3 className="font-serif text-3xl text-[#6E1423]">Shop the Look</h3>
+             <h3 className="font-serif text-3xl text-[#5c0612]">Shop the Look</h3>
           </div>
           <Bestsellers navigateTo={navigateTo} />
         </div>

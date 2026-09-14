@@ -48,7 +48,7 @@ export default function Categories({ navigateTo }) {
   return (
     <section 
       ref={sectionRef}
-      className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 lg:pt-36 pb-20 sm:pb-28 lg:pb-36 bg-[#faf8f5]"
+      className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32 bg-[#faf8f5]"
     >
       
       {/* Top Header Section */}
@@ -57,12 +57,12 @@ export default function Categories({ navigateTo }) {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-stone-900 tracking-[0.2em] uppercase">
-          SHOP BY CATEGORY
-        </h2>
-        <p className="text-xs sm:text-sm font-light text-stone-500 tracking-[0.16em] uppercase mt-2.5">
+        <p className="text-xs sm:text-[13px] font-sans font-medium tracking-[0.25em] text-[#9b6828] uppercase mb-3">
           Explore Our Handcrafted Collections
         </p>
+        <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-stone-900 tracking-tight leading-tight">
+          Shop by <span className="italic font-light text-stone-600">Category</span>
+        </h2>
       </div>
 
       {/* 4-Column x 1-Row Grid */}

@@ -798,7 +798,7 @@ export default function ProjectPage({ navigateTo }) {
                   type="button"
                   onClick={() => handleCategoryChange(cat.id)}
                   className={`shrink-0 px-5 sm:px-6 py-2.5 text-xs font-sans tracking-[0.16em] uppercase rounded-full transition-all duration-200 cursor-pointer ${isActive
-                      ? 'bg-[#5c0612] text-[#F7F2E7] font-semibold shadow-sm'
+                      ? 'bg-[#5c0612] text-[#faf8f5] font-semibold shadow-sm'
                       : 'bg-transparent text-stone-500 hover:text-stone-900 font-medium border border-transparent'
                     }`}
                 >
@@ -811,7 +811,7 @@ export default function ProjectPage({ navigateTo }) {
       </div>
 
       {/* PROJECT LIST */}
-      <main className="w-full max-w-[1200px] mx-auto px-4 sm:px-8 lg:px-12 py-12 sm:py-16">
+      <main className="w-full max-w-[1200px] mx-auto px-4 sm:px-8 lg:px-12 py-20 sm:py-28 lg:py-32">
 
         {filteredProjects.length === 0 ? (
           <div className="text-center py-20 bg-white border border-stone-200/80 p-12 max-w-xl mx-auto shadow-2xs">
@@ -826,7 +826,7 @@ export default function ProjectPage({ navigateTo }) {
               href={createWhatsAppUrl("Hi Qaleen Bhaiya! I'd like to consult on a custom project.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#5c0612] text-[#F7F2E7] px-7 py-3 text-xs font-sans font-semibold tracking-widest uppercase hover:bg-stone-900 transition-colors shadow-sm"
+              className="inline-flex items-center gap-2 bg-[#5c0612] text-[#faf8f5] px-7 py-3 text-xs font-sans font-semibold tracking-widest uppercase hover:bg-stone-900 transition-colors shadow-sm"
             >
               <span>Consult on WhatsApp</span>
               <span>→</span>

@@ -203,7 +203,7 @@ export default function CustomPage({ navigateTo }) {
       {/* ========================================================================= */}
       {/* B. HOW IT WORKS (Process Section)                                         */}
       {/* ========================================================================= */}
-      <section id="how-it-works" className="w-full bg-[#f4ece1]/70 border-y border-stone-200/70 py-16 sm:py-24">
+      <section id="how-it-works" className="w-full bg-[#f4ece1]/70 border-y border-stone-200/70 py-20 sm:py-28 lg:py-32">
         <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
           
           <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
@@ -251,7 +251,7 @@ export default function CustomPage({ navigateTo }) {
       {/* ========================================================================= */}
       {/* C. INTRO STRIP                                                            */}
       {/* ========================================================================= */}
-      <section className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 pt-20 sm:pt-28 pb-12 sm:pb-16 text-center">
+      <section className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 pt-20 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 text-center">
         <p className="text-xs font-sans font-medium tracking-[0.26em] text-[#b89047] uppercase mb-3">
           THREE WAYS TO CUSTOMISE
         </p>
@@ -271,7 +271,7 @@ export default function CustomPage({ navigateTo }) {
       {/* ========================================================================= */}
       {/* C. THREE SERVICE BANNERS (Core of the page)                              */}
       {/* ========================================================================= */}
-      <section className="w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 space-y-16 sm:space-y-24 pb-24 sm:pb-32">
+      <section className="w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 space-y-16 sm:space-y-24 pb-20 sm:pb-28 lg:pb-32">
         {services.map((service) => (
           <div
             key={service.id}
@@ -351,7 +351,7 @@ export default function CustomPage({ navigateTo }) {
       {/* ========================================================================= */}
       {/* E. THE ARCHIVES BANNER (Direct navigation to Archives page)              */}
       {/* ========================================================================= */}
-      <section className="w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 py-16 sm:py-24">
+      <section className="w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 py-20 sm:py-28 lg:py-32">
         <div className="relative overflow-hidden bg-[#2c221e] text-[#faf7f2] border border-stone-800 shadow-xl p-8 sm:p-14 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-10">
           
           {/* Subtle background ambient interior image */}
@@ -374,7 +374,7 @@ export default function CustomPage({ navigateTo }) {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-white leading-tight">
               Explore Our{' '}
               <span className="italic font-serif text-[#d4af37] font-normal">
-                Archives
+                Projects
               </span>
             </h2>
 
@@ -389,7 +389,7 @@ export default function CustomPage({ navigateTo }) {
               onClick={() => navigateTo('project')}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#faf8f5] text-[#5c0612] hover:bg-[#d4af37] hover:text-stone-900 px-8 py-4 text-xs font-sans font-semibold tracking-[0.2em] uppercase transition-all shadow-lg active:scale-95 group cursor-pointer"
             >
-              <span>View Archives</span>
+              <span>View Projects</span>
               <svg className="w-4 h-4 stroke-[2] transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
@@ -403,7 +403,7 @@ export default function CustomPage({ navigateTo }) {
       {/* ========================================================================= */}
       {/* F. FAQ ACCORDION                                                          */}
       {/* ========================================================================= */}
-      <section className="w-full bg-[#f8f4ed]/60 border-t border-stone-200/70 py-20 sm:py-28">
+      <section className="w-full bg-[#f8f4ed]/60 border-t border-stone-200/70 py-20 sm:py-28 lg:py-32">
         <div className="w-full max-w-3xl mx-auto px-6">
           
           <div className="text-center mb-12">

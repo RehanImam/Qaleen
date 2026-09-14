@@ -1,8 +1,29 @@
 
 
 import React, { useState } from 'react';
+import ProductCard from './ProductCard';
+import { PRODUCTS } from '../data/products';
 
-export default function ProductDetail({ product, selectedSize, setSelectedSize, addToCart }) {
+export default function ProductDetail({ product, selectedSize, setSelectedSize, addToCart, navigateTo }) {
+  // Related products: prefer same category, then same main group, excluding the current item.
+  const relatedProducts = React.useMemo(() => {
+    if (!product) return [];
+    const sameCategory = PRODUCTS.filter(
+      (p) => p.id !== product.id && p.category === product.category
+    );
+    const sameGroup = PRODUCTS.filter(
+      (p) => p.id !== product.id && p.mainGroup === product.mainGroup && p.category !== product.category
+    );
+    return [...sameCategory, ...sameGroup].slice(0, 4);
+  }, [product]);
+
+  // Static, representative customer reviews (placeholder content).
+  const REVIEWS = [
+    { name: 'Ananya R.', location: 'Mumbai', rating: 5, text: 'Exceptional craftsmanship — the colours are even richer in person and it has completely transformed our living room.' },
+    { name: 'Vikram S.', location: 'New Delhi', rating: 5, text: 'Beautifully made and incredibly soft underfoot. Delivery was quick and the packaging was immaculate.' },
+    { name: 'Meera K.', location: 'Bengaluru', rating: 4, text: 'Gorgeous piece that anchors the whole space. Slightly larger than expected, but we love it.' },
+  ];
+  const avgRating = (REVIEWS.reduce((s, r) => s + r.rating, 0) / REVIEWS.length).toFixed(1);
   // Demo array to show multiple full-size vertical images
   const images = product?.images && product.images.length >= 5
     ? product.images
@@ -16,6 +37,14 @@ export default function ProductDetail({ product, selectedSize, setSelectedSize, 
 
   const [quantity, setQuantity] = useState(1);
   const [openSection, setOpenSection] = useState('description');
+
+  // Convert a "WxH" foot label (e.g. "2x6") into its centimetre equivalent.
+  const ftToCm = (sz) => {
+    const parts = String(sz).toLowerCase().split('x').map((n) => parseFloat(n.trim()));
+    if (parts.length !== 2 || parts.some((n) => Number.isNaN(n))) return null;
+    const [w, h] = parts;
+    return `${Math.round(w * 30.48)} x ${Math.round(h * 30.48)} cm`;
+  };
 
   const toggleSection = (section) => {
     setOpenSection(openSection === section ? null : section);
@@ -89,9 +118,11 @@ export default function ProductDetail({ product, selectedSize, setSelectedSize, 
                     ₹ {product.originalPrice.toLocaleString('en-IN')}.00
                   </span>
                 )}
-                <span className="bg-[#5c0612] text-white text-[10px] font-sans font-bold px-2 py-0.5 uppercase tracking-wider rounded-sm">
-                  10% OFF
-                </span>
+                {product?.originalPrice && product?.price && product.originalPrice > product.price && (
+                  <span className="bg-[#5c0612] text-white text-[10px] font-sans font-bold px-2 py-0.5 uppercase tracking-wider rounded-sm">
+                    {Math.round((1 - product.price / product.originalPrice) * 100)}% OFF
+                  </span>
+                )}
               </div>
               <p className="text-[11px] text-stone-400 italic font-sans">(Inclusive of all taxes)</p>
             </div>
@@ -128,7 +159,9 @@ export default function ProductDetail({ product, selectedSize, setSelectedSize, 
                     }`}
                   >
                     <div>{sz} ft</div>
-                    <div className="text-[10px] text-stone-400 font-light">244 x 152 cm</div>
+                    {ftToCm(sz) && (
+                      <div className="text-[10px] text-stone-400 font-light">{ftToCm(sz)}</div>
+                    )}
                   </button>
                 ))}
               </div>
@@ -159,7 +192,7 @@ export default function ProductDetail({ product, selectedSize, setSelectedSize, 
             <div className="pt-2 font-sans">
               <button
                 onClick={() => addToCart && addToCart(product, selectedSize)}
-                className="w-full py-4 bg-[#1a1a1a] text-white font-normal text-xs tracking-[0.2em] uppercase hover:bg-black transition-colors shadow-sm"
+                className="w-full py-4 bg-[#5c0612] text-white font-normal text-xs tracking-[0.2em] uppercase hover:bg-[#4a0510] transition-colors shadow-sm"
               >
                 Add to cart
               </button>
@@ -238,6 +271,61 @@ export default function ProductDetail({ product, selectedSize, setSelectedSize, 
           </div>
 
         </div>
+
+        {/* CUSTOMER REVIEWS */}
+        <section className="mt-16 sm:mt-24 pt-12 border-t border-stone-200 font-sans">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 sm:mb-12">
+            <div>
+              <p className="text-xs sm:text-[13px] font-medium tracking-[0.25em] text-[#9b6828] uppercase mb-3">
+                What Our Clients Say
+              </p>
+              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-stone-900 tracking-tight">
+                Reviews
+              </h2>
+            </div>
+            <div className="flex items-center gap-2.5">
+              <span className="text-amber-500 text-lg leading-none">{'★'.repeat(Math.round(avgRating))}</span>
+              <span className="text-sm text-stone-600">{avgRating} · {REVIEWS.length} reviews</span>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {REVIEWS.map((r, i) => (
+              <div key={i} className="bg-white border border-stone-200/70 p-6 rounded-xs">
+                <div className="text-sm mb-3">
+                  <span className="text-amber-500">{'★'.repeat(r.rating)}</span>
+                  <span className="text-stone-300">{'★'.repeat(5 - r.rating)}</span>
+                </div>
+                <p className="text-sm text-stone-600 font-light leading-relaxed font-serif mb-4">"{r.text}"</p>
+                <p className="text-xs text-stone-800 font-medium">
+                  {r.name} <span className="text-stone-400 font-normal">· {r.location}</span>
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* YOU MAY ALSO LIKE */}
+        {relatedProducts.length > 0 && (
+          <section className="mt-16 sm:mt-24 font-sans">
+            <div className="mb-8 sm:mb-12">
+              <p className="text-xs sm:text-[13px] font-medium tracking-[0.25em] text-[#9b6828] uppercase mb-3">
+                Curated For You
+              </p>
+              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-stone-900 tracking-tight">
+                You May Also <span className="italic font-light text-stone-600">Like</span>
+              </h2>
+            </div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 sm:gap-x-8 gap-y-8 sm:gap-y-10">
+              {relatedProducts.map((p) => (
+                <ProductCard
+                  key={p.id}
+                  product={p}
+                  onSelect={(prod) => navigateTo && navigateTo('productDetail', { product: prod })}
+                />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );

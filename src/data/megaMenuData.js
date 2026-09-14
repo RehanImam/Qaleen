@@ -3,6 +3,14 @@
 export const CARPET_MEGA_MENU = {
   id: 'carpet',
   title: 'Carpet',
+  featured: {
+    image: 'https://images.unsplash.com/photo-1600166898405-da9535204843?auto=format&fit=crop&w=600&q=80',
+    eyebrow: 'Featured Collection',
+    title: 'Persian Wool Rugs',
+    subtitle: 'Hand-knotted heirloom pieces',
+    ctaLabel: 'Shop the collection',
+    searchLabel: 'Persian',
+  },
   groups: [
     {
       title: 'By Origin',
@@ -98,6 +106,14 @@ export const CARPET_MEGA_MENU = {
 export const PRAYER_MAT_MEGA_MENU = {
   id: 'prayer mat',
   title: 'Prayer Mat',
+  featured: {
+    image: 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=600&q=80',
+    eyebrow: 'New Arrival',
+    title: 'Kohinoor Collection',
+    subtitle: 'Premium velvet janamaz',
+    ctaLabel: 'Explore now',
+    searchLabel: 'Kohinoor',
+  },
   groups: [
     {
       title: 'By Origin',
@@ -125,7 +141,7 @@ export const PRAYER_MAT_MEGA_MENU = {
       ],
     },
     {
-      title: 'By Construction & Finish',
+      title: 'By Construction',
       items: [
         'Digital Printed',
         'Foil Printed',

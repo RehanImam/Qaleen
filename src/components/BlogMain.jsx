@@ -15,7 +15,7 @@ export default function BlogMain({ navigateTo }) {
     
     setCurrentArticleSlug(article);
     setCurrentCategory(category);
-  }, [window.location.search]); // Simple dependency, though in App.js it pushes state. 
+  }, []); // Simple dependency, though in App.js it pushes state. 
   
   // A helper function to sync local state if the user navigates via App.js
   useEffect(() => {

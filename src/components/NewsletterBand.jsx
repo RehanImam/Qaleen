@@ -35,7 +35,7 @@ export default function NewsletterBand() {
   return (
     <section 
       ref={bandRef}
-      className="w-full bg-[#5c0612] text-white py-20 sm:py-24 lg:py-28 relative overflow-hidden"
+      className="w-full bg-[#5c0612] text-white py-20 sm:py-28 lg:py-32 relative overflow-hidden"
     >
       {/* Subtle decorative background pattern/texture */}
       <div className="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]" />

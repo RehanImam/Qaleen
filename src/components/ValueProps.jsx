@@ -49,7 +49,7 @@ export default function ValueProps() {
         
         {/* Top Header */}
         <div 
-          className={`max-w-3xl mb-14 sm:mb-20 text-left transition-all duration-700 ease-out ${
+          className={`max-w-3xl mb-12 sm:mb-16 lg:mb-20 text-left transition-all duration-700 ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
         >

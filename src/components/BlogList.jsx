@@ -30,13 +30,13 @@ export default function BlogList({ currentCategory, onCategorySelect, onArticleC
   const gridPosts = filteredPosts.length > 0 ? filteredPosts.slice(1) : [];
 
   return (
-    <div className="w-full bg-[#F7F2E7] min-h-screen">
+    <div className="w-full bg-[#faf8f5] min-h-screen">
       {/* HEADER SECTION */}
       <div className="pt-24 pb-12 px-6 md:px-12 text-center">
-        <p className="text-xs tracking-widest text-[#6E1423] font-sans mb-3 uppercase">
+        <p className="text-xs tracking-widest text-[#5c0612] font-sans mb-3 uppercase">
           READ & LEARN
         </p>
-        <h1 className="text-4xl md:text-5xl font-serif text-[#6E1423] mb-4">
+        <h1 className="text-4xl md:text-5xl font-serif text-[#5c0612] mb-4">
           The <span className="italic text-[#d4af37]">Qaleen</span> Journal
         </h1>
         <p className="text-sm md:text-base text-gray-700 font-sans max-w-2xl mx-auto">
@@ -45,7 +45,7 @@ export default function BlogList({ currentCategory, onCategorySelect, onArticleC
       </div>
 
       {/* CATEGORY SELECTOR (Sticky) */}
-      <div className="sticky top-[72px] z-30 bg-[#F7F2E7]/90 backdrop-blur-md border-b border-[#6E1423]/10 py-4 mb-8">
+      <div className="sticky top-[72px] z-30 bg-[#faf8f5]/90 backdrop-blur-md border-b border-[#5c0612]/10 py-4 mb-8">
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-center gap-2 overflow-x-auto no-scrollbar">
           {CATEGORIES.map(cat => (
             <button
@@ -53,8 +53,8 @@ export default function BlogList({ currentCategory, onCategorySelect, onArticleC
               onClick={() => onCategorySelect(cat.id === 'all' ? null : cat.id)}
               className={`px-5 py-2 rounded-full text-xs tracking-widest whitespace-nowrap transition-colors border ${
                 activeCategory === cat.id
-                  ? 'bg-[#6E1423] text-[#F7F2E7] border-[#6E1423]'
-                  : 'bg-transparent text-[#6E1423] border-[#6E1423] hover:bg-[#6E1423]/10'
+                  ? 'bg-[#5c0612] text-[#faf8f5] border-[#5c0612]'
+                  : 'bg-transparent text-[#5c0612] border-[#5c0612] hover:bg-[#5c0612]/10'
               }`}
             >
               {cat.label}
@@ -81,13 +81,13 @@ export default function BlogList({ currentCategory, onCategorySelect, onArticleC
               <span className="text-xs tracking-widest text-[#d4af37] font-sans uppercase block mb-3">
                 {featuredPost.categoryLabel}
               </span>
-              <h2 className="text-3xl md:text-4xl font-serif text-[#6E1423] mb-4 group-hover:text-[#8B1A2C] transition-colors">
+              <h2 className="text-3xl md:text-4xl font-serif text-[#5c0612] mb-4 group-hover:text-[#7a0a1a] transition-colors">
                 {featuredPost.title}
               </h2>
               <p className="text-gray-700 font-sans mb-6">
                 {featuredPost.excerpt}
               </p>
-              <button className="text-xs tracking-widest text-[#6E1423] border-b border-[#6E1423] pb-1 hover:text-[#d4af37] hover:border-[#d4af37] transition-colors">
+              <button className="text-xs tracking-widest text-[#5c0612] border-b border-[#5c0612] pb-1 hover:text-[#d4af37] hover:border-[#d4af37] transition-colors">
                 READ MORE
               </button>
             </div>
@@ -104,7 +104,7 @@ export default function BlogList({ currentCategory, onCategorySelect, onArticleC
                 <p className="text-gray-500 font-sans">No articles found matching your criteria.</p>
                 <button 
                   onClick={() => { setSearchTerm(''); onCategorySelect(null); }}
-                  className="mt-4 text-[#6E1423] border-b border-[#6E1423] text-xs tracking-widest"
+                  className="mt-4 text-[#5c0612] border-b border-[#5c0612] text-xs tracking-widest"
                 >
                   CLEAR FILTERS
                 </button>
@@ -127,7 +127,7 @@ export default function BlogList({ currentCategory, onCategorySelect, onArticleC
                     <span className="text-xs tracking-widest text-[#d4af37] font-sans uppercase block mb-2">
                       {post.categoryLabel}
                     </span>
-                    <h3 className="text-xl font-serif text-[#6E1423] mb-3 group-hover:text-[#8B1A2C] transition-colors">
+                    <h3 className="text-xl font-serif text-[#5c0612] mb-3 group-hover:text-[#7a0a1a] transition-colors">
                       {post.title}
                     </h3>
                     <p className="text-sm text-gray-700 font-sans mb-4 flex-grow">
@@ -152,16 +152,16 @@ export default function BlogList({ currentCategory, onCategorySelect, onArticleC
                 placeholder="SEARCH ARTICLES..." 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-transparent border-b border-[#6E1423]/30 py-3 text-sm font-sans focus:outline-none focus:border-[#6E1423] placeholder-gray-400"
+                className="w-full bg-transparent border-b border-[#5c0612]/30 py-3 text-sm font-sans focus:outline-none focus:border-[#5c0612] placeholder-gray-400"
               />
-              <svg className="w-4 h-4 absolute right-0 top-3 text-[#6E1423]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 absolute right-0 top-3 text-[#5c0612]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </div>
 
             {/* Trending Posts */}
             <div>
-              <h4 className="text-sm tracking-widest font-sans text-[#6E1423] border-b border-[#6E1423]/10 pb-3 mb-6">
+              <h4 className="text-sm tracking-widest font-sans text-[#5c0612] border-b border-[#5c0612]/10 pb-3 mb-6">
                 TRENDING POSTS
               </h4>
               <div className="space-y-6">
@@ -182,7 +182,7 @@ export default function BlogList({ currentCategory, onCategorySelect, onArticleC
                       <span className="text-[10px] tracking-wider text-[#d4af37] font-sans block mb-1">
                         {post.categoryLabel}
                       </span>
-                      <h5 className="text-sm font-serif text-[#6E1423] group-hover:text-[#8B1A2C] leading-snug">
+                      <h5 className="text-sm font-serif text-[#5c0612] group-hover:text-[#7a0a1a] leading-snug">
                         {post.title}
                       </h5>
                     </div>
@@ -192,17 +192,17 @@ export default function BlogList({ currentCategory, onCategorySelect, onArticleC
             </div>
 
             {/* Newsletter Panel */}
-            <div className="bg-[#EFE6D8] p-8 text-center border border-[#6E1423]/10">
-              <h4 className="text-xl font-serif text-[#6E1423] mb-3">Join the List</h4>
+            <div className="bg-[#EFE6D8] p-8 text-center border border-[#5c0612]/10">
+              <h4 className="text-xl font-serif text-[#5c0612] mb-3">Join the List</h4>
               <p className="text-sm font-sans text-gray-700 mb-6">
                 Receive our latest design guides, styling tips, and exclusive access to new arrivals.
               </p>
               <input 
                 type="email" 
                 placeholder="EMAIL ADDRESS" 
-                className="w-full bg-white border border-[#6E1423]/20 px-4 py-3 text-xs tracking-widest mb-4 focus:outline-none focus:border-[#6E1423]"
+                className="w-full bg-white border border-[#5c0612]/20 px-4 py-3 text-xs tracking-widest mb-4 focus:outline-none focus:border-[#5c0612]"
               />
-              <button className="w-full bg-[#6E1423] text-white tracking-widest text-xs py-3 hover:bg-[#8B1A2C] transition-colors">
+              <button className="w-full bg-[#5c0612] text-white tracking-widest text-xs py-3 hover:bg-[#7a0a1a] transition-colors">
                 SUBSCRIBE
               </button>
             </div>

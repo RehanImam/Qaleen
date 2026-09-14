@@ -22,36 +22,36 @@ export default function ShopView({ filters, setFilters, filteredProducts, naviga
     (filters.maxPrice < 50000 ? 1 : 0);
 
   return (
-    <div className="w-full bg-[#faf8f5] font-serif min-h-screen pb-20">
+    <div className="w-full bg-bg font-serif min-h-screen pb-20">
       
       {/* (A) TOOLBAR ROW (Filter / Sort by / product count) */}
-      <div className="w-full border-b border-stone-200/70 py-4 sm:py-5 bg-[#faf8f5]">
-        <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between font-serif text-xs sm:text-sm text-stone-700">
+      <div className="w-full border-b border-line py-4 sm:py-5 bg-bg">
+        <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between font-serif text-xs sm:text-sm text-muted">
           
           {/* Left Side: Filter and Sort by ▾ grouped together, LEFT-ALIGNED */}
           <div className="flex items-center gap-3 sm:gap-4">
             {/* Filter Toggle Button */}
             <button
               onClick={() => setIsFilterOpen(true)}
-              className="flex items-center gap-2 hover:text-[#5c0612] transition-colors font-light tracking-wide text-stone-800 cursor-pointer"
+              className="flex items-center gap-2 hover:text-accent transition-colors font-light tracking-wide text-ink cursor-pointer"
             >
               <span>Filter</span>
               {activeFilterCount > 0 && (
-                <span className="w-4 h-4 rounded-full bg-[#5c0612] text-white text-[10px] font-sans font-medium flex items-center justify-center">
+                <span className="w-4 h-4 rounded-full bg-accent text-white text-[10px] font-sans font-medium flex items-center justify-center">
                   {activeFilterCount}
                 </span>
               )}
             </button>
 
             {/* Separator / */}
-            <span className="text-stone-300 font-sans select-none">/</span>
+            <span className="text-muted/40 font-sans select-none">/</span>
 
             {/* "Sort by ▾" Dropdown */}
             <div className="relative inline-flex items-center group cursor-pointer">
-              <div className="flex items-center gap-1.5 text-stone-800 font-light tracking-wide hover:text-[#5c0612] transition-colors">
+              <div className="flex items-center gap-1.5 text-ink font-light tracking-wide hover:text-accent transition-colors">
                 <span>Sort by</span>
                 <svg
-                  className="w-3 h-3 text-stone-600 stroke-[1.5] transition-transform group-hover:translate-y-0.5"
+                  className="w-3 h-3 text-muted stroke-[1.5] transition-transform group-hover:translate-y-0.5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -75,7 +75,7 @@ export default function ShopView({ filters, setFilters, filteredProducts, naviga
           </div>
 
           {/* Right Side: Product Count right-aligned and vertically centered */}
-          <div className="text-stone-600 font-light tracking-wide text-xs sm:text-sm">
+          <div className="text-muted font-light tracking-wide text-xs sm:text-sm">
             {sortedProducts.length} {sortedProducts.length === 1 ? 'product' : 'products'}
           </div>
 
@@ -94,7 +94,7 @@ export default function ShopView({ filters, setFilters, filteredProducts, naviga
       {/* (B) PRODUCT GRID SECTION (Larger, image-forward layout matching Reference Image 2) */}
       <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
         {sortedProducts.length > 0 ? (
-          <div className="grid grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-6 sm:gap-x-8 lg:gap-x-9 gap-y-12 sm:gap-y-16">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-3 min-[480px]:gap-x-6 sm:gap-x-8 lg:gap-x-9 gap-y-8 min-[480px]:gap-y-12 sm:gap-y-16">
             {sortedProducts.map((product) => (
               <ProductCard
                 key={product.id}
@@ -106,7 +106,7 @@ export default function ShopView({ filters, setFilters, filteredProducts, naviga
         ) : (
           /* Empty State */
           <div className="text-center py-20 space-y-4">
-            <p className="text-stone-500 text-base font-sans">No products match your selected filters.</p>
+            <p className="text-muted text-base font-sans">No products match your selected filters.</p>
             <button
               onClick={() =>
                 setFilters({
@@ -118,7 +118,7 @@ export default function ShopView({ filters, setFilters, filteredProducts, naviga
                   color: '',
                 })
               }
-              className="text-xs tracking-wider uppercase underline font-sans text-stone-700 hover:text-black cursor-pointer"
+              className="text-xs tracking-wider uppercase underline font-sans text-muted hover:text-accent-hover cursor-pointer"
             >
               Reset All Filters
             </button>

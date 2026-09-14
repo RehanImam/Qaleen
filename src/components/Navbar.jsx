@@ -13,6 +13,27 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
     carpet: true, // Carpet expanded by default in mobile menu
   });
   const [openMobileSubGroup, setOpenMobileSubGroup] = useState({});
+  const [showAnnouncement, setShowAnnouncement] = useState(true);
+
+  // Restore the dismissed state of the announcement bar (per-browser).
+  useEffect(() => {
+    try {
+      if (localStorage.getItem('qb_announcement_dismissed') === '1') {
+        setShowAnnouncement(false);
+      }
+    } catch (e) {
+      /* localStorage unavailable — keep the bar visible */
+    }
+  }, []);
+
+  const dismissAnnouncement = () => {
+    setShowAnnouncement(false);
+    try {
+      localStorage.setItem('qb_announcement_dismissed', '1');
+    } catch (e) {
+      /* ignore write failures */
+    }
+  };
 
   const headerRef = useRef(null);
   const triggerRefs = useRef({});
@@ -69,7 +90,7 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
     { name: 'PRAYER MAT', slug: 'prayer mat', mainGroup: 'Prayer Mat' },
     { name: 'ARTWORKS', slug: 'artworks', mainGroup: 'Artwork' },
     { name: 'CUSTOM', slug: 'custom', mainGroup: 'Custom' },
-    { name: 'ARCHIVES', slug: 'project' },
+    { name: 'PROJECTS', slug: 'project' },
     { name: 'BLOG', slug: 'blog' },
   ];
 
@@ -170,9 +191,21 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
       }`}
     >
       {/* 1. Top Announcement Bar */}
-      <div className="bg-[#5c0612] text-white text-xs py-2 text-center font-medium tracking-wide w-full">
-        Free shipping on orders over ₹1,999 • Easy 7-day returns
-      </div>
+      {showAnnouncement && (
+        <div className="relative bg-[#5c0612] text-white text-xs py-2 px-10 text-center font-medium tracking-wide w-full">
+          Free shipping on orders over ₹1,999 • Easy 7-day returns
+          <button
+            type="button"
+            onClick={dismissAnnouncement}
+            aria-label="Dismiss announcement"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors p-1"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      )}
 
       {/* 2. Main Navbar */}
       <div 
@@ -504,6 +537,30 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
               );
             })}
           </ul>
+
+          {/* Account & Wishlist quick links (mobile only — hidden in the desktop header icons) */}
+          <div className="mt-5 pt-5 border-t border-stone-200/70 flex flex-col gap-4">
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center gap-3 text-stone-800 hover:text-[#5c0612] text-xs tracking-[0.2em] font-medium uppercase text-left"
+            >
+              <svg className="w-4 h-4 stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              <span>Account</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center gap-3 text-stone-800 hover:text-[#5c0612] text-xs tracking-[0.2em] font-medium uppercase text-left"
+            >
+              <svg className="w-4 h-4 stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              <span>Wishlist</span>
+            </button>
+          </div>
         </div>
       )}
     </header>

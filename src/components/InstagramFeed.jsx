@@ -58,7 +58,7 @@ export default function InstagramFeed() {
         
         {/* Header with Headline on Left & Handle on Right */}
         <div 
-          className={`flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-14 pb-4 border-b border-stone-200/80 transition-all duration-700 ease-out ${
+          className={`flex flex-col sm:flex-row sm:items-end justify-between mb-12 sm:mb-16 lg:mb-20 pb-4 border-b border-stone-200/80 transition-all duration-700 ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
         >
