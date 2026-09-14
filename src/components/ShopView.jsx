@@ -25,7 +25,7 @@ export default function ShopView({ filters, setFilters, filteredProducts, naviga
     <div className="w-full bg-bg font-serif min-h-screen pb-20">
       
       {/* (A) TOOLBAR ROW (Filter / Sort by / product count) */}
-      <div className="w-full border-b border-line py-4 sm:py-5 bg-bg">
+      <div className="w-full border-b border-line py-2 sm:py-2.5 bg-bg">
         <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between font-serif text-xs sm:text-sm text-muted">
           
           {/* Left Side: Filter and Sort by ▾ grouped together, LEFT-ALIGNED */}
