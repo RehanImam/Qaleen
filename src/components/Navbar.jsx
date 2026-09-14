@@ -206,10 +206,6 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
         isHome ? 'fixed top-0 left-0' : 'sticky top-0'
       } ${showNavbar ? 'translate-y-0' : '-translate-y-full'}`}
     >
-      {/* 1. Top Announcement Bar */}
-      <div className="bg-[#5c0612] text-white text-xs sm:text-sm py-2.5 text-center font-medium tracking-wide w-full">
-        Free shipping on orders over ₹1,999 • Easy 7-day returns
-      </div>
       {/* 2. Main Navbar */}
       <div 
         onMouseEnter={() => {
@@ -224,7 +220,7 @@ export default function Navbar({ currentPage = 'home', cartCount, onOpenCart, na
             : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent text-white'
         }`}
       >
-        <div className="w-full px-6 lg:px-12 py-5 sm:py-6">
+        <div className="w-full px-6 lg:px-12 py-6 sm:py-7">
           
           {/* SINGLE ROW: Logo Far Left - Navigation Links Center - Icons Far Right */}
           <div className="flex items-center justify-between gap-6">
